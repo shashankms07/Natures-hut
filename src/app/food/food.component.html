@@ -1,0 +1,53 @@
+<div class="p-4 ">
+  <h1 class="text-2xl font-bold mb-4">Food</h1>
+  
+  <div class="border-t border-gray-300 pt-4">
+    <!-- Filter, Sort, Veg, Non-Veg Buttons -->
+    <div class="flex space-x-4">
+      <!-- Filter Button -->
+      <button class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100">
+        Filter
+      </button>
+      
+      <!-- Sort Button -->
+      <button class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100">
+        Sort
+      </button>
+      
+      <!-- Veg Button -->
+      <button class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100">
+        Veg
+      </button>
+      
+      <!-- Non-Veg Button -->
+      <button class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100">
+        Non-Veg
+      </button>
+    </div>
+  </div>
+
+ <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-4">
+  <div class="max-w-sm mx-auto p-4 border border-gray-300 rounded-lg shadow-md">
+    <img src="assets\596343.jpg"  class="w-full h-auto rounded-lg">
+    <div class="mt-4 font-bold">Egg Masala Dum Biryani</div>
+    <div class="mt-4 font-bold">Rs 120</div>
+    <div>A dum preparation of eggs simmered in onion & tomato gravy with fragrant biryani rice.</div>
+    
+  </div>
+ </div>
+</div>
+
+
+
+
+<div class="p-4">
+  <input type="text" [(ngModel)]="name" placeholder="Name" class="p-2 border border-gray-300 mb-2" />
+  <input type="number" [(ngModel)]="age" placeholder="Age" class="p-2 border border-gray-300 mb-2" />
+  <input type="text" [(ngModel)]="city" placeholder="City" class="p-2 border border-gray-300 mb-2" />
+  <input type="file" (change)="onFileSelected($event)" class="mb-2" />
+  <button (click)="upload()" class="bg-blue-500 text-white p-2 rounded">Upload</button>
+</div>
+
+
+<div *ngIf="showImage" class="p-4"></div>
+  <img [src]="uploadedImageUrl" alt="Uploaded Image" class="w-full h-auto border border-gray-300" />
