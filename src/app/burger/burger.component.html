@@ -1,38 +1,96 @@
 <div class="p-4 ">
     <h1 class="text-2xl font-bold mb-4">Burger</h1>
-    
+   
     <div class="border-t border-gray-300 pt-4">
-      <!-- Filter, Sort, Veg, Non-Veg Buttons -->
       <div class="flex space-x-4">
-        <!-- Filter Button -->
-        <button class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100">
-          Filter
+        <!-- All Button -->
+        <button
+          class="px-4 py-2 border border-gray-300 rounded-md text-gray-700"
+          [ngClass]="{
+            'bg-gray-100': selectedFilter === 'all',
+            'text-gray-700': selectedFilter !== 'all'
+          }"
+          (click)="filterBurgers('all')"
+        >
+          All
         </button>
-        
-        <!-- Sort Button -->
-        <button class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100">
-          Sort
-        </button>
-        
+    
         <!-- Veg Button -->
-        <button class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100">
+        <button
+          class="px-4 py-2 border border-gray-300 rounded-md text-gray-700"
+          [ngClass]="{
+            'bg-green-500 text-white': selectedFilter === 'veg',
+            'hover:bg-gray-100': selectedFilter !== 'veg'
+          }"
+          (click)="filterBurgers('veg')"
+        >
           Veg
         </button>
-        
+    
         <!-- Non-Veg Button -->
-        <button class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100">
+        <button
+          class="px-4 py-2 border border-gray-300 rounded-md text-gray-700"
+          [ngClass]="{
+            'bg-red-500 text-white': selectedFilter === 'non-veg',
+            'hover:bg-gray-100': selectedFilter !== 'non-veg'
+          }"
+          (click)="filterBurgers('non-veg')"
+        >
           Non-Veg
         </button>
-      </div>
-    </div>
-  
-    <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-4">
-        <div *ngFor="let burger of burgerList" class="max-w-sm mx-auto p-4 border border-gray-300 rounded-lg shadow-md">
-          <img [src]="burger.imageUrl" class="w-full h-auto rounded-lg">
-          <h2 class="mt-2 font-bold">{{ burger.name }}</h2>
-          <h3 class="mt-2 font-bold">Rs {{ burger.price }}</h3>
-          <p class="mt-2">{{ burger.description }}</p>
+    
+        <!-- Sort Dropdown -->
+        <div class="relative">
+          <button
+            class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100"
+            (click)="toggleSortDropdown()"
+          >
+            Sort
+          </button>
+          <div
+            *ngIf="isSortDropdownVisible"
+            class="absolute mt-2 w-32 bg-white shadow-md rounded-md z-50"
+          >
+            <button
+              class="block px-4 py-2 text-left w-full text-gray-700 hover:bg-gray-100"
+              (click)="sortBurgers('low-high')"
+            >
+              Low to High
+            </button>
+            <button
+              class="block px-4 py-2 text-left w-full text-gray-700 hover:bg-gray-100"
+              (click)="sortBurgers('high-low')"
+            >
+              High to Low
+            </button>
+          </div>
         </div>
       </div>
-      
+    </div>
+    
+    
+    
+    
+
+    <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-4">
+      <div
+        *ngFor="let burger of filteredBurgers"
+        class="max-w-sm mx-auto p-4 border border-gray-300 rounded-lg shadow-md relative"
+      >
+        <!-- Veg/Non-Veg Indicator Dot with Border -->
+        <div
+          [ngClass]="{
+            'bg-green-500 border-green-700': burger.type === 'veg',
+            'bg-red-500 border-red-700': burger.type === 'non-veg'
+          }"
+          class="w-4 h-4 rounded-full border-2 absolute top-2 left-2"
+        ></div>
+    
+        <img [src]="burger.imageUrl" class="w-full h-auto rounded-lg" />
+        <h2 class="mt-2 font-bold">{{ burger.name }}</h2>
+        <p class="mt-2">{{ burger.description }}</p>
+        <h3 class="mt-2 font-bold">Rs {{ burger.price }}</h3>
+      </div>
+    </div>
+    
   </div>
