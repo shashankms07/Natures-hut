@@ -12,6 +12,12 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { FormsModule } from '@angular/forms';
 import { FoodComponent } from './food/food.component';
 import { BurgerComponent } from './burger/burger.component';
+import { ShakesComponent } from './shakes/shakes.component';
+import { PizzasComponent } from './pizzas/pizzas.component';
+import { DessertsComponent } from './desserts/desserts.component';
+import { FileUploadComponent } from './file-upload/file-upload.component';
+import { RollsComponent } from './rolls/rolls.component';
+import { CoffeComponent } from './coffe/coffe.component';
 
 
 
@@ -21,7 +27,13 @@ import { BurgerComponent } from './burger/burger.component';
     AppComponent,
     HomeComponent,
     FoodComponent,
-    BurgerComponent 
+    BurgerComponent,
+    ShakesComponent,
+    PizzasComponent,
+    DessertsComponent,
+    FileUploadComponent,
+    RollsComponent,
+    CoffeComponent 
     
    
   ],

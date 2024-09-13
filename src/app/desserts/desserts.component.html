@@ -1,0 +1,73 @@
+<div class="p-4">
+    <!-- Tabs -->
+    <div class="flex border-b border-gray-300 mb-4">
+        <h1 class="text-2xl font-bold mb-4 flex items-center">
+            <span routerLink="/home" class="cursor-pointer mt-1" style="font-size: 40px;">&#8592;</span>
+          </h1>
+      <button
+        (click)="selectedTab = 'iceCream'"
+        [class.bg-blue-500]="selectedTab === 'iceCream'"
+        [class.text-white]="selectedTab === 'iceCream'"
+        class="px-4 py-2 font-bold"
+      >
+        Ice Cream
+      </button>
+      <button
+        (click)="selectedTab = 'cakes'"
+        [class.bg-blue-500]="selectedTab === 'cakes'"
+        [class.text-white]="selectedTab === 'cakes'"
+        class="px-4 py-2 font-bold"
+      >
+        Cakes
+      </button>
+    </div>
+  
+    <!-- Tab Content -->
+    <div *ngIf="selectedTab === 'iceCream'">
+      <h1 class="text-2xl font-bold mb-4">Ice Cream</h1>
+      <h1 class="text-xl mb-4">
+        Cool down with our delightful selection of ice creams, perfect for any sweet craving.
+      </h1>
+      <div class="border-t border-gray-300 pt-4">
+
+      </div>
+      <div class="mt-3 grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-4">
+        <div
+          *ngFor="let dessert of dessertList"
+          class="p-4 border border-gray-300 rounded-lg shadow-md relative"
+        >
+          <h2 class="mt-2 font-bold">{{ dessert.name }}</h2>
+          <p class="mt-2">{{ dessert.description }}</p>
+          <div class="mt-2 flex flex-col space-y-2">
+            <div class="flex justify-between">
+              <span class="font-medium">Single Scoop</span>
+              <span class="font-bold">Rs {{ dessert.singleScoop }}</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="font-medium">3 Scoop</span>
+              <span class="font-bold">Rs {{ dessert.tscoop }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div *ngIf="selectedTab === 'cakes'">
+      <h1 class="text-2xl font-bold mb-4">Cakes</h1>
+      <h1 class="text-xl mb-4">
+        Feast on amazing cakes to satisfy your sweet tooth.
+      </h1>
+      <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-4">
+        <!-- Example cake item -->
+        <div
+          *ngFor="let cake of cakeList"
+          class="p-4 border border-gray-300 rounded-lg shadow-md relative"
+        >
+          <h2 class="mt-2 font-bold">{{ cake.name }}</h2>
+          <p class="mt-2">{{ cake.description }}</p>
+          <h3 class="mt-2 font-bold">Rs {{ cake.price }}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  

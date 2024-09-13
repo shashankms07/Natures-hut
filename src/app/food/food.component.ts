@@ -9,49 +9,45 @@ import { FileUploadService } from '../file-upload.service';
   styleUrls: ['./food.component.scss']
 })
 export class FoodComponent {
-  name: string = '';
-  age: number | null = null;
-  city: string = '';
-  selectedFile: File | null = null;
-  uploadedImageUrl: string | null = null;
-  showImage: boolean = false;
 
-  constructor(private fileUploadService: FileUploadService) {}
+  starterList = [
+    { name: 'French Fries', price: 99, description: 'Crispy golden fries served with a side of ketchup.', type: 'veg' },
+    { name: 'Smiley', price: 99, description: 'Potato smiles that are fun and tasty.', type: 'veg' },
+    { name: 'Potato Wedges', price: 110, description: 'Seasoned potato wedges with a crispy exterior.', type: 'veg' },
+    { name: 'Veg Burger', price: 130, description: 'A hearty veggie patty with fresh veggies and mayo.', type: 'veg' },
+    { name: 'Chicken Nuggets', price: 120, description: 'Breaded chicken nuggets served with a dipping sauce.', type: 'non-veg' },
+    { name: 'Fish Fingers', price: 150, description: 'Crispy fish fingers with a side of tartar sauce.', type: 'non-veg' },
+    { name: 'Chicken Burger', price: 150, description: 'Juicy chicken patty with lettuce, tomato, and mayo.', type: 'non-veg' },
+    { name: 'Chicken Fingers', price: 120, description: 'Tender chicken strips with a crispy coating.', type: 'non-veg' },
+  ];
 
-  ngOnInit(): void {
-    // Replace with the actual path of your image in Firebase Storage
-    const imagePath = 'path/to/your-image.jpg';
+  filteredStarters = [...this.starterList];
+  isSortDropdownVisible = false;
+  selectedFilter: string = 'all'; // Default filter
 
-    // Fetch the image URL from Firebase Storage
-    this.fileUploadService.getImageUrl(imagePath).subscribe(url => {
-      this.uploadedImageUrl = url;
-      this.showImage = true; // Show the image
-    });
-  }
-
-  onFileSelected(event: any) {
-    this.selectedFile = event.target.files[0];
-  }
-
-  upload() {
-    if (this.selectedFile) {
-      const validAge = this.age ?? 0; // Default to 0 if `age` is null
-      this.fileUploadService.uploadImage(this.selectedFile).subscribe(imageUrl => {
-        this.fileUploadService.saveData(this.name, validAge, this.city, imageUrl)
-          .then(() => {
-            console.log('Entry added successfully!');
-            this.name = '';
-            this.age = null;
-            this.city = '';
-            this.selectedFile = null;
-          })
-          .catch(error => {
-            console.error('Error adding entry: ', error);
-          });
-      });
+  // Filter starters by type
+  filterStarters(type: string) {
+    this.selectedFilter = type; // Update selected filter
+    if (type === 'all') {
+      this.filteredStarters = [...this.starterList];  // Reset to show all starters
     } else {
-      console.error('Please select a file.');
+      this.filteredStarters = this.starterList.filter(starter => starter.type === type);
     }
   }
-  
+
+  // Toggle sorting dropdown visibility
+  toggleSortDropdown() {
+    this.isSortDropdownVisible = !this.isSortDropdownVisible;
+  }
+
+  // Sort starters by price
+  sortStarters(order: string) {
+    if (order === 'low-high') {
+      this.filteredStarters.sort((a, b) => a.price - b.price);
+    } else if (order === 'high-low') {
+      this.filteredStarters.sort((a, b) => b.price - a.price);
+    }
+    this.isSortDropdownVisible = false; // Close dropdown after sorting
+  }
+ 
 }

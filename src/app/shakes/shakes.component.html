@@ -1,0 +1,88 @@
+<div class="p-4">
+  <!-- Tabs -->
+  <div class="flex border-b border-gray-300 mb-4">
+    <h1 class="text-2xl font-bold mb-4 flex items-center">
+      <span routerLink="/home" class="cursor-pointer mt-1" style="font-size: 40px;">&#8592;</span>
+    </h1>
+    <button
+      (click)="selectedTab = 'shakes'"
+      [class.bg-blue-500]="selectedTab === 'shakes'"
+      [class.text-white]="selectedTab === 'shakes'"
+      class="px-4 py-2 font-bold"
+    >
+      Shakes
+    </button>
+    <button
+      (click)="selectedTab = 'sodaBase'"
+      [class.bg-blue-500]="selectedTab === 'sodaBase'"
+      [class.text-white]="selectedTab === 'sodaBase'"
+      class="px-4 py-2 font-bold"
+    >
+      Soda Base
+    </button>
+    <button
+      (click)="selectedTab = 'iceBase'"
+      [class.bg-blue-500]="selectedTab === 'iceBase'"
+      [class.text-white]="selectedTab === 'iceBase'"
+      class="px-4 py-2 font-bold"
+    >
+      Ice Base
+    </button>
+    
+  </div>
+
+  <!-- Tab Content -->
+  <div *ngIf="selectedTab === 'shakes'">
+    <h1 class="text-2xl font-bold mb-4">Shakes</h1>
+    <h1 class="text-xl mb-4">
+      Tempt your taste buds with cold and thick milkshakes.
+    </h1>
+    <div class="border-t border-gray-300 pt-4">
+
+    </div>
+    <div class="mt-3 grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-4">
+      <div
+        *ngFor="let shake of shakeList"
+        class="p-4 border border-gray-300 rounded-lg shadow-md relative"
+      >
+        <h2 class="mt-2 font-bold">{{ shake.name }}</h2>
+        <p class="mt-2">{{ shake.description }}</p>
+        <h3 class="mt-2 font-bold">Rs {{ shake.price }}</h3>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="selectedTab === 'sodaBase'">
+    <h1 class="text-2xl font-bold mb-4">Soda Base</h1>
+    <h1 class="text-xl mb-4">
+    Sparkle Up Your Day with Our Soda Base Creations.
+    </h1>
+    <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
+      <div
+        *ngFor="let soda of sodaBaseList"
+        class="p-4 border border-gray-300 rounded-lg shadow-md relative"
+      >
+        <h2 class="mt-2 font-bold">{{ soda.name }}</h2>
+        <p class="mt-2">{{ soda.description }}</p>
+        <h3 class="mt-2 font-bold">Rs {{ soda.price }}</h3>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="selectedTab === 'iceBase'">
+    <h1 class="text-2xl font-bold mb-4">Ice Base</h1>
+    <h1 class="text-xl mb-4">
+    Cool Off with Our Frosty Ice Base Creations.
+    </h1>
+    <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
+      <div
+        *ngFor="let ice of iceBaseList"
+        class="p-4 border border-gray-300 rounded-lg shadow-md relative"
+      >
+        <h2 class="mt-2 font-bold">{{ ice.name }}</h2>
+        <p class="mt-2">{{ ice.description }}</p>
+        <h3 class="mt-2 font-bold">Rs {{ ice.price }}</h3>
+      </div>
+    </div>
+  </div>
+</div>

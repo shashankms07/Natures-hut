@@ -1,53 +1,95 @@
-<div class="p-4 ">
-  <h1 class="text-2xl font-bold mb-4">Food</h1>
-  
+<div class="p-4">
+  <h1 class="text-2xl font-bold mb-4 flex items-center">
+    <span routerLink="/home" class="cursor-pointer -mt-1.5" style="font-size: 40px;">&#8592;</span>
+    <span class="ml-2">Starters</span>
+  </h1>
+  <h1 class="text-xl mb-4">
+    Kick off your meal with our delicious and tempting selection of starters.
+  </h1>
   <div class="border-t border-gray-300 pt-4">
-    <!-- Filter, Sort, Veg, Non-Veg Buttons -->
     <div class="flex space-x-4">
-      <!-- Filter Button -->
-      <button class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100">
-        Filter
+      <!-- All Button -->
+      <button
+        class="px-4 py-2 border border-gray-300 rounded-md text-gray-700"
+        [ngClass]="{
+          'bg-gray-100': selectedFilter === 'all',
+          'text-gray-700': selectedFilter !== 'all'
+        }"
+        (click)="filterStarters('all')"
+      >
+        All
       </button>
-      
-      <!-- Sort Button -->
-      <button class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100">
-        Sort
-      </button>
-      
+  
       <!-- Veg Button -->
-      <button class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100">
+      <button
+        class="px-4 py-2 border border-gray-300 rounded-md text-gray-700"
+        [ngClass]="{
+          'bg-green-500 text-white': selectedFilter === 'veg',
+          'hover:bg-gray-100': selectedFilter !== 'veg'
+        }"
+        (click)="filterStarters('veg')"
+      >
         Veg
       </button>
-      
+  
       <!-- Non-Veg Button -->
-      <button class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100">
+      <button
+        class="px-4 py-2 border border-gray-300 rounded-md text-gray-700"
+        [ngClass]="{
+          'bg-red-500 text-white': selectedFilter === 'non-veg',
+          'hover:bg-gray-100': selectedFilter !== 'non-veg'
+        }"
+        (click)="filterStarters('non-veg')"
+      >
         Non-Veg
       </button>
+  
+      <!-- Sort Dropdown -->
+      <div class="relative">
+        <button
+          class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100"
+          (click)="toggleSortDropdown()"
+        >
+          Sort
+        </button>
+        <div
+          *ngIf="isSortDropdownVisible"
+          class="absolute mt-2 w-32 bg-white shadow-md rounded-md z-50"
+        >
+          <button
+            class="block px-4 py-2 text-left w-full text-gray-700 hover:bg-gray-100"
+            (click)="sortStarters('low-high')"
+          >
+            Low to High
+          </button>
+          <button
+            class="block px-4 py-2 text-left w-full text-gray-700 hover:bg-gray-100"
+            (click)="sortStarters('high-low')"
+          >
+            High to Low
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 
- <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-4">
-  <div class="max-w-sm mx-auto p-4 border border-gray-300 rounded-lg shadow-md">
-    <img src="assets\596343.jpg"  class="w-full h-auto rounded-lg">
-    <div class="mt-4 font-bold">Egg Masala Dum Biryani</div>
-    <div class="mt-4 font-bold">Rs 120</div>
-    <div>A dum preparation of eggs simmered in onion & tomato gravy with fragrant biryani rice.</div>
-    
+  <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-4">
+    <div
+      *ngFor="let starter of filteredStarters"
+      class=" p-4 border border-gray-300 rounded-lg shadow-md relative"
+    >
+      <!-- Veg/Non-Veg Indicator Dot with Border -->
+      <div
+        [ngClass]="{
+          'bg-green-500 border-green-700': starter.type === 'veg',
+          'bg-red-500 border-red-700': starter.type === 'non-veg'
+        }"
+        class="w-4 h-4 rounded-full border-2 absolute top-2 left-2"
+      ></div>
+
+      <h2 class="mt-2 font-bold">{{ starter.name }}</h2>
+      <p class="mt-2">{{ starter.description }}</p>
+      <h3 class="mt-2 font-bold">Rs {{ starter.price }}</h3>
+    </div>
   </div>
- </div>
 </div>
-
-
-
-
-<div class="p-4">
-  <input type="text" [(ngModel)]="name" placeholder="Name" class="p-2 border border-gray-300 mb-2" />
-  <input type="number" [(ngModel)]="age" placeholder="Age" class="p-2 border border-gray-300 mb-2" />
-  <input type="text" [(ngModel)]="city" placeholder="City" class="p-2 border border-gray-300 mb-2" />
-  <input type="file" (change)="onFileSelected($event)" class="mb-2" />
-  <button (click)="upload()" class="bg-blue-500 text-white p-2 rounded">Upload</button>
-</div>
-
-
-<div *ngIf="showImage" class="p-4"></div>
-  <img [src]="uploadedImageUrl" alt="Uploaded Image" class="w-full h-auto border border-gray-300" />
