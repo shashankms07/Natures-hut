@@ -17,8 +17,9 @@ import { PizzasComponent } from './pizzas/pizzas.component';
 import { DessertsComponent } from './desserts/desserts.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { RollsComponent } from './rolls/rolls.component';
-import { CoffeComponent } from './coffe/coffe.component';
-
+import { AdminComponent } from './admin/admin.component';
+import { ToastrModule } from 'ngx-toastr';
+import { CoffeeComponent } from './coffee/coffee.component';
 
 
 
@@ -33,12 +34,22 @@ import { CoffeComponent } from './coffe/coffe.component';
     DessertsComponent,
     FileUploadComponent,
     RollsComponent,
-    CoffeComponent 
+  
+    AdminComponent,
+       CoffeeComponent,
+   
+ 
     
    
   ],
   imports: [
     BrowserModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-center-center', // Center the toast messages
+      timeOut: 3000, // Duration for toast visibility
+      preventDuplicates: true
+    }), // Import ToastrModule with options
+   
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,

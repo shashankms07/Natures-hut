@@ -1,0 +1,30 @@
+<div class="p-4">
+    <h1 class="text-2xl font-bold mb-4 flex items-center">
+        Starters
+     
+    </h1>
+    <div class="border-b border-gray-300 -mt-2 mb-2"></div>
+    <h1 class="text-xl mb-4">
+      Kick off your meal with our delicious and tempting selection of starters.
+    </h1>
+    
+  
+    <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-4">
+      <div
+      *ngFor="let coffee of coffees"
+        class=" p-4 border border-gray-300 rounded-lg shadow-md relative"
+      >
+        <!-- Dot indicator -->
+        <div class="ml-1.5" [ngClass]="{
+          'absolute top-2 left-2 w-3 h-3 rounded-full': true,
+          'bg-green-500': coffee.type === 'Veg',
+          'bg-red-500': coffee.type === 'Non-Veg'
+        }"></div>
+  
+      <h2 class="mt-2 font-bold flex-grow">{{ coffee.name }}</h2>
+      <p class="mt-2 flex-grow">{{ coffee.description }}</p>
+      <h3 class="mt-2 font-bold">Rs {{ coffee.price }}</h3>
+      </div>
+    </div>
+  </div>
+  

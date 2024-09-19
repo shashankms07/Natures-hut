@@ -1,73 +1,89 @@
 <div class="p-4">
-    <!-- Tabs -->
-    <div class="flex border-b border-gray-300 mb-4">
-        <h1 class="text-2xl font-bold mb-4 flex items-center">
-            <span routerLink="/home" class="cursor-pointer mt-1" style="font-size: 40px;">&#8592;</span>
-          </h1>
-      <button
-        (click)="selectedTab = 'iceCream'"
-        [class.bg-blue-500]="selectedTab === 'iceCream'"
-        [class.text-white]="selectedTab === 'iceCream'"
-        class="px-4 py-2 font-bold"
+  <!-- Tabs -->
+  <div class="flex flex-col border-b border-gray-300 mb-4">
+    
+    <!-- Tabs Navigation -->
+    <div class="mb-4 flex space-x-0">
+      <button 
+        (click)="selectTab('Ice Cream')" 
+        [ngClass]="{
+          'text-white bg-blue-500': selectedTab === 'Ice Cream',
+          'text-blue-500 bg-white': selectedTab !== 'Ice Cream'
+        }"
+        class="py-2 px-4 font-semibold flex-1 border border-gray-300"
       >
         Ice Cream
       </button>
-      <button
-        (click)="selectedTab = 'cakes'"
-        [class.bg-blue-500]="selectedTab === 'cakes'"
-        [class.text-white]="selectedTab === 'cakes'"
-        class="px-4 py-2 font-bold"
+      <button 
+        (click)="selectTab('Cake')" 
+        [ngClass]="{
+          'text-white bg-blue-500': selectedTab === 'Cake',
+          'text-blue-500 bg-white': selectedTab !== 'Cake'
+        }"
+        class="py-2 px-4 font-semibold flex-1 border border-gray-300"
       >
-        Cakes
+        Cake
       </button>
     </div>
+  </div>
   
-    <!-- Tab Content -->
-    <div *ngIf="selectedTab === 'iceCream'">
-      <h1 class="text-2xl font-bold mb-4">Ice Cream</h1>
-      <h1 class="text-xl mb-4">
-        Cool down with our delightful selection of ice creams, perfect for any sweet craving.
-      </h1>
-      <div class="border-t border-gray-300 pt-4">
 
-      </div>
+ 
+  <!-- Tab Content -->
+  <div>
+    <div *ngIf="selectedTab === 'Ice Cream'">
+      <h1 class="text-2xl font-bold mb-4">Ice Cream</h1>
+      <h1 class="text-xl mb-4">Flavourful ice creams that will make you smile a bit wider.</h1>
       <div class="mt-3 grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-4">
         <div
-          *ngFor="let dessert of dessertList"
+          *ngFor="let iceCream of iceCreams"
           class="p-4 border border-gray-300 rounded-lg shadow-md relative"
         >
-          <h2 class="mt-2 font-bold">{{ dessert.name }}</h2>
-          <p class="mt-2">{{ dessert.description }}</p>
+          <!-- Dot indicator -->
+          <div class="ml-1.5" [ngClass]="{
+            'absolute top-2 left-2 w-3 h-3 rounded-full': true,
+            'bg-green-500': iceCream.type === 'Veg',
+            'bg-red-500': iceCream.type === 'Non-Veg'
+          }"></div>
+          <h2 class="font-bold mt-2">{{ iceCream.name }}</h2>
+          <p class="mt-2">{{ iceCream.description }}</p>
           <div class="mt-2 flex flex-col space-y-2">
             <div class="flex justify-between">
-              <span class="font-medium">Single Scoop</span>
-              <span class="font-bold">Rs {{ dessert.singleScoop }}</span>
+              <span class="font-medium">1 Scoop</span>
+              <span class="font-bold">Rs {{ iceCream.singleScoopPrice }}</span>
             </div>
             <div class="flex justify-between">
               <span class="font-medium">3 Scoop</span>
-              <span class="font-bold">Rs {{ dessert.tscoop }}</span>
+              <span class="font-bold">Rs {{ iceCream.threeScoopPrice }}</span>
             </div>
           </div>
         </div>
       </div>
     </div>
-  
-    <div *ngIf="selectedTab === 'cakes'">
-      <h1 class="text-2xl font-bold mb-4">Cakes</h1>
-      <h1 class="text-xl mb-4">
-        Feast on amazing cakes to satisfy your sweet tooth.
-      </h1>
-      <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-4">
-        <!-- Example cake item -->
+
+    <div *ngIf="selectedTab === 'Cake'">
+      <!-- Ice Base Tab Content -->
+      <h1 class="text-2xl font-bold mb-4">Cake</h1>
+      <h1 class="text-xl mb-4">Feast on amazing cakes to satisfy your sweet tooth.</h1>
+      <div class="mt-3 grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-4">
         <div
-          *ngFor="let cake of cakeList"
+          *ngFor="let cake of cakes"
           class="p-4 border border-gray-300 rounded-lg shadow-md relative"
         >
-          <h2 class="mt-2 font-bold">{{ cake.name }}</h2>
+          <!-- Dot indicator -->
+          <div class="ml-1.5" [ngClass]="{
+            'absolute top-2 left-2 w-3 h-3 rounded-full': true,
+            'bg-green-500': cake.type === 'Veg',
+            'bg-red-500': cake.type === 'Non-Veg'
+          }"></div>
+          <h2 class="font-bold mt-2">{{ cake.name }}</h2>
           <p class="mt-2">{{ cake.description }}</p>
           <h3 class="mt-2 font-bold">Rs {{ cake.price }}</h3>
         </div>
       </div>
+      <!-- Your Ice Base content here -->
     </div>
+
+    
   </div>
-  
+</div>

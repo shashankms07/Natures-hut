@@ -2,3 +2,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.toast-center-center {
+  top: 50% !important; /* Center vertically */
+  left: 50% !important; /* Center horizontally */
+  transform: translate(-50%, -50%) !important; /* Adjust position to center */
+}

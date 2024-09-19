@@ -1,8 +1,8 @@
 <nav class="bg-blue-600 p-4">
   <div class="container mx-auto flex justify-between items-center">
     <!-- Logo -->
-    <div class="text-white text-2xl font-boldd">
-      Nature's Hut Cafe
+    <div class="text-white text-2xl font-bold">
+      Nature's Hut Caffe
     </div>
 
     <!-- Hamburger Icon for Mobile -->
@@ -19,12 +19,19 @@
       <li routerLink="/home" class="hover:text-gray-300 cursor-pointer">Home</li>
       <li class="hover:text-gray-300 cursor-pointer">About</li>
       <li class="hover:text-gray-300 cursor-pointer">Services</li>
-      <li class="hover:text-gray-300 cursor-pointer">Contact</li>
     </ul>
   </div>
 
+  <!-- Background overlay for closing the menu -->
+  <div 
+    *ngIf="isMenuOpen" 
+    class="fixed inset-0 bg-black bg-opacity-50 z-40"
+    (click)="toggleMenu()"
+  ></div>
+
   <!-- Mobile Drawer Menu -->
-  <div [ngClass]="{'block': isMenuOpen, 'hidden': !isMenuOpen, 'fixed': true, 'top-0': true, 'left-0': true, 'h-full': true, 'w-64': true, 'bg-blue-600': true, 'transition-transform': true, 'duration-300': true, '-translate-x-full': !isMenuOpen, 'translate-x-0': isMenuOpen}">
+  <div [ngClass]="{'block': isMenuOpen, 'hidden': !isMenuOpen, 'fixed': true, 'top-0': true, 'left-0': true, 'h-full': true, 'w-64': true, 'bg-blue-600': true, 'transition-transform': true, 'duration-300': true, '-translate-x-full': !isMenuOpen, 'translate-x-0': isMenuOpen}"
+       class="z-50">
     <div class="flex justify-end p-4">
       <button (click)="toggleMenu()" class="text-white">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -33,14 +40,16 @@
       </button>
     </div>
     <ul class="space-y-4 text-white p-4">
-      <li routerLink="/home" class="hover:text-gray-300 cursor-pointer">Home</li>
-      <li class="hover:text-gray-300 cursor-pointer">About</li>
-      <li class="hover:text-gray-300 cursor-pointer">Services</li>
-      <li class="hover:text-gray-300 cursor-pointer">Contact</li>
+      <li routerLink="/home" class="hover:text-gray-300 cursor-pointer" (click)="toggleMenu()">Home</li>
+      <li class="hover:text-gray-300 cursor-pointer" (click)="toggleMenu()">About</li>
+      <li class="hover:text-gray-300 cursor-pointer" (click)="toggleMenu()">Services</li>
     </ul>
   </div>
 </nav>
 
-
-
 <router-outlet></router-outlet>
+
+<!-- Floating Call Button (Removed the phone icon) -->
+<a href="tel:+918123148469" class="fixed bottom-12 right-4 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-500 transition">
+  <span class="text-lg">📞</span>
+</a>

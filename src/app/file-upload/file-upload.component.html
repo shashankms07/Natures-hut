@@ -1,11 +1,22 @@
 <div class="p-4">
-    <input type="text" [(ngModel)]="name" placeholder="Name" class="p-2 border border-gray-300 mb-2" />
-    <input type="number" [(ngModel)]="age" placeholder="Age" class="p-2 border border-gray-300 mb-2" />
-    <input type="text" [(ngModel)]="city" placeholder="City" class="p-2 border border-gray-300 mb-2" />
-    <input type="file" (change)="onFileSelected($event)" class="mb-2" />
-    <button (click)="upload()" class="bg-blue-500 text-white p-2 rounded">Upload</button>
-  </div>
-  
-  
-  <div *ngIf="showImage" class="p-4"></div>
-  <img [src]="uploadedImageUrl" alt="Uploaded Image" class="w-full h-auto border border-gray-300" />
+  <input type="text" [(ngModel)]="name" placeholder="Name" class="p-2 border border-gray-300 mb-2" />
+  <input type="number" [(ngModel)]="age" placeholder="Age" class="p-2 border border-gray-300 mb-2" />
+  <input type="text" [(ngModel)]="city" placeholder="City" class="p-2 border border-gray-300 mb-2" />
+  <input type="file" (change)="onFileSelected($event)" class="mb-2" />
+  <button (click)="upload()" class="bg-blue-500 text-white p-2 rounded">Upload</button>
+</div>
+
+<!-- Input for Document ID and Button to Fetch Image -->
+<div class="p-4 mt-4">
+  <input type="text" [(ngModel)]="documentId" placeholder="Enter Document ID" class="p-2 border border-gray-300 mb-2" />
+  <button (click)="fetchImageById()" class="bg-green-500 text-white p-2 rounded">Fetch Image</button>
+</div>
+
+<!-- Display Specific Image by Document ID -->
+<div *ngIf="image" class="p-4 mt-4">
+  <h3 class="text-lg font-semibold mb-4">Image Details:</h3>
+  <img [src]="image.imageUrl"  class="w-10 h-10 border border-gray-300 mb-2" />
+  <p><strong>Name:</strong> {{ image.name }}</p>
+  <p><strong>Age:</strong> {{ image.age }}</p>
+  <p><strong>City:</strong> {{ image.city }}</p>
+</div>

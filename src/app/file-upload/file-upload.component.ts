@@ -8,27 +8,21 @@ import { FileUploadService } from '../file-upload.service';
 })
 export class FileUploadComponent {
 
-
-
-
  name: string = '';
  age: number | null = null;
  city: string = '';
  selectedFile: File | null = null;
  uploadedImageUrl: string | null = null;
  showImage: boolean = false;
+ documentId: string = ''; // ID to fetch specific image
+ image: any | null = null; // Store the specific image data
 
  constructor(private fileUploadService: FileUploadService) {}
 
  ngOnInit(): void {
-   // Replace with the actual path of your image in Firebase Storage
-   const imagePath = 'path/to/your-image.jpg';
+   
 
-   // Fetch the image URL from Firebase Storage
-   this.fileUploadService.getImageUrl(imagePath).subscribe(url => {
-     this.uploadedImageUrl = url;
-     this.showImage = true; // Show the image
-   });
+
  }
 
  onFileSelected(event: any) {
@@ -55,6 +49,19 @@ export class FileUploadComponent {
      console.error('Please select a file.');
    }
  }
+
+
+ fetchImageById() {
+  if (this.documentId) {
+    this.fileUploadService.getImageById(this.documentId).subscribe(imageData => {
+      this.image = imageData; 
+    }, error => {
+      console.error('Error fetching image by ID:', error);
+    });
+  } else {
+    console.error('Please provide a document ID.');
+  }
+}
  
 
 }

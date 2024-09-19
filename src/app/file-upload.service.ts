@@ -3,6 +3,7 @@ import { finalize } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -38,8 +39,13 @@ export class FileUploadService {
     });
   }
 
-  getImageUrl(imagePath: string): Observable<string> {
-    const fileRef = this.storage.ref(imagePath);
-    return fileRef.getDownloadURL();
+  getImageById(documentId: string): Observable<any> {
+    return this.firestore.collection('people').doc(documentId).snapshotChanges().pipe(
+      map(action => {
+        const data = action.payload.data() as any;
+        const id = action.payload.id;
+        return { id, ...data };
+      })
+    );
   }
 }

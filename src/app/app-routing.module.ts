@@ -7,20 +7,24 @@ import { ShakesComponent } from './shakes/shakes.component';
 import { PizzasComponent } from './pizzas/pizzas.component';
 import { DessertsComponent } from './desserts/desserts.component';
 import { RollsComponent } from './rolls/rolls.component';
-import { CoffeComponent } from './coffe/coffe.component';
+
 import { FileUploadComponent } from './file-upload/file-upload.component';
+import { AdminComponent } from './admin/admin.component';
+import { CoffeeComponent } from './coffee/coffee.component';
+
 
 const routes: Routes = [
 
+  { path: 'admin', component: AdminComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' }, 
   { path: 'home', component: HomeComponent },
-  { path: 'food', component: FoodComponent }, 
   { path: 'burger', component: BurgerComponent }, 
   { path: 'shakes', component: ShakesComponent }, 
   { path: 'pizzas', component: PizzasComponent }, 
   { path: 'desserts', component: DessertsComponent }, 
   { path: 'rolls', component: RollsComponent }, 
-  { path: 'coffe', component: CoffeComponent }, 
+  { path: 'food', component: FoodComponent }, 
+  { path: 'coffee', component: CoffeeComponent }, 
   { path: 'file-upload', component: FileUploadComponent }, 
 ];
 
