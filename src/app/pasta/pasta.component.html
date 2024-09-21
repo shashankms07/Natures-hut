@@ -1,0 +1,64 @@
+<div class="p-4">
+    <h1 class="text-2xl font-bold mb-4 flex items-center">Pastas</h1>
+    <div class="border-b border-gray-300 -mt-2 mb-2"></div>
+    <h1 class="text-xl mb-4">
+        Savor our flavorful pastas, from creamy Alfredo to classic Arrabbiata. A perfect treat for pasta lovers!
+    </h1>
+  
+    <!-- Tabs for filtering (All, Veg, Non-Veg) -->
+    <div class="flex space-x-4 mb-6">
+      <button
+        class="px-4 py-2 border rounded"
+        [ngClass]="{
+          'bg-blue-500 text-white': selectedTab === 'All',
+          'border-gray-300': selectedTab !== 'All'
+        }"
+        (click)="selectTab('All')"
+      >
+        All
+      </button>
+      <button
+        class="px-4 py-2 border rounded"
+        [ngClass]="{
+          'bg-green-500 text-white': selectedTab === 'Veg',
+          'border-gray-300': selectedTab !== 'Veg'
+        }"
+        (click)="selectTab('Veg')"
+      >
+        Veg
+      </button>
+      <button
+        class="px-4 py-2 border rounded"
+        [ngClass]="{
+          'bg-red-500 text-white': selectedTab === 'Non-Veg',
+          'border-gray-300': selectedTab !== 'Non-Veg'
+        }"
+        (click)="selectTab('Non-Veg')"
+      >
+        Non-Veg
+      </button>
+    </div>
+  
+    <!-- Starter Cards -->
+    <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-4">
+      <div
+        *ngFor="let starter of filteredStarters"
+        class="p-4 border border-gray-300 rounded-lg shadow-md relative"
+      >
+        <!-- Dot indicator -->
+        <div
+          class="ml-1.5"
+          [ngClass]="{
+            'absolute top-2 left-2 w-3 h-3 rounded-full': true,
+            'bg-green-500': starter.type === 'Veg',
+            'bg-red-500': starter.type === 'Non-Veg'
+          }"
+        ></div>
+  
+        <h2 class="mt-2 font-bold flex-grow">{{ starter.name }}</h2>
+        <p class="mt-2 flex-grow">{{ starter.description }}</p>
+        <h3 class="mt-2 font-bold">Rs {{ starter.price }}</h3>
+      </div>
+    </div>
+  </div>
+  

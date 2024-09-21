@@ -25,6 +25,8 @@ import { ChickenDryItemsComponent } from './chicken-dry-items/chicken-dry-items.
 import { TandooriDryItemsComponent } from './tandoori-dry-items/tandoori-dry-items.component';
 import { RotiGravyComponent } from './roti-gravy/roti-gravy.component';
 import { RiceItemsComponent } from './rice-items/rice-items.component';
+import { FishItemsComponent } from './fish-items/fish-items.component';
+import { PastaComponent } from './pasta/pasta.component';
 
 
 
@@ -47,6 +49,8 @@ import { RiceItemsComponent } from './rice-items/rice-items.component';
        TandooriDryItemsComponent,
        RotiGravyComponent,
        RiceItemsComponent,
+       FishItemsComponent,
+       PastaComponent,
    
  
     

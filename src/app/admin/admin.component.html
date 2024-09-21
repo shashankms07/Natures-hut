@@ -16,6 +16,7 @@
         <option value="Hot Beverages">Hot Beverages</option>
         <option value="Gravy">Gravy</option>
         <option value="rice">Rice</option>
+        <option value="pasta">Pasta</option>
       </select>
     </div>
 
@@ -128,6 +129,16 @@
     </div>
 
     <div *ngIf="selectedCategory === 'rice'">
+  
+      <!-- Price Input -->
+      <div>
+        <label for="price" class="block text-sm font-medium text-gray-700">Price (Rs):</label>
+        <input id="price" type="number" [(ngModel)]="itemPrice" name="price" required
+          class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+      </div>
+    </div>
+
+    <div *ngIf="selectedCategory === 'pasta'">
   
       <!-- Price Input -->
       <div>

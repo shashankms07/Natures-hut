@@ -104,6 +104,13 @@ export class AdminComponent {
         price: this.itemPrice,
         type: this.itemType
       };
+    } else if (this.selectedCategory === 'pasta') { // New Gravy Category
+      collectionPath = 'Natures hut/pasta/Items'; // Collection path for Gravy
+      item = {
+        name: this.itemName,
+        price: this.itemPrice,
+        type: this.itemType
+      };
     }
 
     if (collectionPath && item) {

@@ -16,6 +16,8 @@ import { ChickenDryItemsComponent } from './chicken-dry-items/chicken-dry-items.
 import { TandooriDryItemsComponent } from './tandoori-dry-items/tandoori-dry-items.component';
 import { RotiGravyComponent } from './roti-gravy/roti-gravy.component';
 import { RiceItemsComponent } from './rice-items/rice-items.component';
+import { FishItemsComponent } from './fish-items/fish-items.component';
+import { PastaComponent } from './pasta/pasta.component';
 
 
 const routes: Routes = [
@@ -35,6 +37,8 @@ const routes: Routes = [
   { path: 'tandoori-dry-items', component: TandooriDryItemsComponent }, 
   { path: 'roti-gravy', component: RotiGravyComponent }, 
   { path: 'rice-items', component: RiceItemsComponent }, 
+  { path: 'fish-items', component: FishItemsComponent }, 
+  { path: 'pasta', component: PastaComponent }, 
   { path: 'file-upload', component: FileUploadComponent }, 
 ];
 

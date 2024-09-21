@@ -8,11 +8,11 @@ import { Component } from '@angular/core';
 export class TandooriDryItemsComponent {
 
   tandooris = [
-    { name: 'Paneer Tikka ', price: 130 },
-    { name: 'Chicken Tikka', price: 170 },
-    { name: 'Tandoori Kalmi', price: 180 },
-    { name: 'Tandoori Chicken Kebab', price: 180 },
-    { name: 'Tandoori Chicken (half)', price: 180 },
+    { name: 'Paneer Tikka ', price: 160 },
+    { name: 'Chicken Tikka', price: 160 },
+    { name: 'Tandoori Kalmi', price: 80 },
+    { name: 'Tandoori Chicken', price: 400 },
+    { name: 'Tandoori Chicken (half)', price: 230 },
     
   ];
 
