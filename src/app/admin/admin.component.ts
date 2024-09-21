@@ -75,7 +75,7 @@ export class AdminComponent {
         };
       } 
     } else if (this.selectedCategory === 'Starters') {
-      collectionPath = 'Natures hut/Starters/Items'; // Collection path for Rolls
+      collectionPath = 'Natures hut/Starters/Items'; // Collection path for Starters
       item = {
         name: this.itemName,
         description: this.itemDescription,
@@ -83,15 +83,29 @@ export class AdminComponent {
         type: this.itemType
       };
     } else if (this.selectedCategory === 'Hot Beverages') {
-      collectionPath = 'Natures hut/Hot Beverages/Items'; // Collection path for Rolls
+      collectionPath = 'Natures hut/Hot Beverages/Items'; // Collection path for Hot Beverages
       item = {
         name: this.itemName,
         description: this.itemDescription,
         price: this.itemPrice,
         type: this.itemType
       };
+    } else if (this.selectedCategory === 'Gravy') { // New Gravy Category
+      collectionPath = 'Natures hut/Gravy/Items'; // Collection path for Gravy
+      item = {
+        name: this.itemName,
+        price: this.itemPrice,
+        type: this.itemType
+      };
+    }  else if (this.selectedCategory === 'rice') { // New Gravy Category
+      collectionPath = 'Natures hut/rice/Items'; // Collection path for Gravy
+      item = {
+        name: this.itemName,
+        price: this.itemPrice,
+        type: this.itemType
+      };
     }
-    
+
     if (collectionPath && item) {
       this.firestore.collection(collectionPath).add(item)
         .then(() => {

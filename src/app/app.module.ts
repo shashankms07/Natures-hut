@@ -20,6 +20,11 @@ import { RollsComponent } from './rolls/rolls.component';
 import { AdminComponent } from './admin/admin.component';
 import { ToastrModule } from 'ngx-toastr';
 import { CoffeeComponent } from './coffee/coffee.component';
+import { SnacksComponent } from './snacks/snacks.component';
+import { ChickenDryItemsComponent } from './chicken-dry-items/chicken-dry-items.component';
+import { TandooriDryItemsComponent } from './tandoori-dry-items/tandoori-dry-items.component';
+import { RotiGravyComponent } from './roti-gravy/roti-gravy.component';
+import { RiceItemsComponent } from './rice-items/rice-items.component';
 
 
 
@@ -37,6 +42,11 @@ import { CoffeeComponent } from './coffee/coffee.component';
   
     AdminComponent,
        CoffeeComponent,
+       SnacksComponent,
+       ChickenDryItemsComponent,
+       TandooriDryItemsComponent,
+       RotiGravyComponent,
+       RiceItemsComponent,
    
  
     

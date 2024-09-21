@@ -11,6 +11,11 @@ import { RollsComponent } from './rolls/rolls.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { AdminComponent } from './admin/admin.component';
 import { CoffeeComponent } from './coffee/coffee.component';
+import { SnacksComponent } from './snacks/snacks.component';
+import { ChickenDryItemsComponent } from './chicken-dry-items/chicken-dry-items.component';
+import { TandooriDryItemsComponent } from './tandoori-dry-items/tandoori-dry-items.component';
+import { RotiGravyComponent } from './roti-gravy/roti-gravy.component';
+import { RiceItemsComponent } from './rice-items/rice-items.component';
 
 
 const routes: Routes = [
@@ -25,6 +30,11 @@ const routes: Routes = [
   { path: 'rolls', component: RollsComponent }, 
   { path: 'food', component: FoodComponent }, 
   { path: 'coffee', component: CoffeeComponent }, 
+  { path: 'snacks', component: SnacksComponent }, 
+  { path: 'chicken-dry-items', component: ChickenDryItemsComponent }, 
+  { path: 'tandoori-dry-items', component: TandooriDryItemsComponent }, 
+  { path: 'roti-gravy', component: RotiGravyComponent }, 
+  { path: 'rice-items', component: RiceItemsComponent }, 
   { path: 'file-upload', component: FileUploadComponent }, 
 ];
 

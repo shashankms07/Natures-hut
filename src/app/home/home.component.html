@@ -2,7 +2,7 @@
   <h1 class="text-2xl font-semibold">What's on your mind?</h1>
 
   <div class="mt-6 bg-slate-200 bg-opacity-50 p-4 rounded-lg">
-    <h2 class="text-xl font-semibold">Caffe Menu</h2>
+    <h2 class="text-2xl font-bold">Cafe Menu</h2>
   </div>
   
   <div class="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
@@ -21,6 +21,13 @@
       <div class="mt-4 font-bold">Pizza</div>
     </div>
 
+    <div routerLink="/rolls" class="bg-white border border-gray-200 rounded-lg shadow-md p-4 text-center cursor-pointer">
+      <div class="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-full overflow-hidden mx-auto">
+        <img src="assets/images/Peppy-Chicken-Roll_1.jpg" class="w-full h-full object-cover">
+      </div>
+      <div class="mt-4 font-bold">Rolls</div>
+    </div>
+
     <div routerLink="/desserts" class="bg-white border border-gray-200 rounded-lg shadow-md p-4 text-center cursor-pointer">
       <div class="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-full overflow-hidden mx-auto">
         <img src="assets/images/unnamed.jpg" class="w-full h-full object-cover">
@@ -35,12 +42,7 @@
       <div class="mt-4 font-bold">Cold Beverages</div>
     </div>
     
-    <div routerLink="/rolls" class="bg-white border border-gray-200 rounded-lg shadow-md p-4 text-center cursor-pointer">
-      <div class="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-full overflow-hidden mx-auto">
-        <img src="assets/images/Peppy-Chicken-Roll_1.jpg" class="w-full h-full object-cover">
-      </div>
-      <div class="mt-4 font-bold">Rolls</div>
-    </div>
+   
 
     <div routerLink="/coffee" class="bg-white border border-gray-200 rounded-lg shadow-md p-4 text-center cursor-pointer">
       <div class="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-full overflow-hidden mx-auto">
@@ -49,4 +51,30 @@
       <div class="mt-4 font-bold">Hot Beverages</div>
     </div>
   </div>
+
+  <!-- Daba Menu Section -->
+<div class="mt-6  bg-slate-200 bg-opacity-50 p-4 rounded-lg mb-4">
+  <h2 class="text-2xl font-bold ">Daba Menu</h2> 
+
+ <div class="mt-4 mb-4 ">
+  <div routerLink="/snacks" class="p-4 bg-white shadow-md rounded-lg mb-4">
+    <h1 class="text-xl font-bold">Snacks</h1>
+  </div>
+  <div routerLink="/chicken-dry-items" class="p-4 bg-white shadow-md rounded-lg mb-4">
+    <h1 class="text-xl font-bold">Chicken Dry Items</h1>
+  </div>
+  <div routerLink="/tandoori-dry-items" class="p-4 bg-white shadow-md rounded-lg mb-4">
+    <h1 class="text-xl font-bold">Tandoori Dry Items</h1>
+  </div>
+  <div routerLink="/roti-gravy" class="p-4 bg-white shadow-md rounded-lg mb-4">
+    <h1 class="text-xl font-bold">Roti & Gravy Items</h1>
+  </div>
+  <div routerLink="/rice-items" class="p-4 bg-white shadow-md rounded-lg mb-4">
+    <h1 class="text-xl font-bold">Rice Items</h1>
+  </div>
+</div>
+ </div>
+
+
+
 </div>
