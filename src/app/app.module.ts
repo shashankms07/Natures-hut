@@ -27,6 +27,8 @@ import { RotiGravyComponent } from './roti-gravy/roti-gravy.component';
 import { RiceItemsComponent } from './rice-items/rice-items.component';
 import { FishItemsComponent } from './fish-items/fish-items.component';
 import { PastaComponent } from './pasta/pasta.component';
+import { MomosComponent } from './momos/momos.component';
+import { LocationComponent } from './location/location.component';
 
 
 
@@ -51,6 +53,8 @@ import { PastaComponent } from './pasta/pasta.component';
        RiceItemsComponent,
        FishItemsComponent,
        PastaComponent,
+       MomosComponent,
+       LocationComponent,
    
  
     

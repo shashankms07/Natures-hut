@@ -105,11 +105,18 @@ export class AdminComponent {
         type: this.itemType
       };
     } else if (this.selectedCategory === 'pasta') { // New Gravy Category
-      collectionPath = 'Natures hut/pasta/Items'; // Collection path for Gravy
+      collectionPath = 'Natures hut/pasta/Items'; // Collection path for Gravy 
       item = {
         name: this.itemName,
         price: this.itemPrice,
-        type: this.itemType
+        type: this.itemType  
+      };
+    } else if (this.selectedCategory === 'momos') { // New Gravy Category
+      collectionPath = 'Natures hut/Momos/Items'; // Collection path for Gravy 
+      item = {
+        name: this.itemName,
+        price: this.itemPrice,
+        type: this.itemType  
       };
     }
 
