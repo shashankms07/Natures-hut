@@ -14,8 +14,8 @@ export class RotiGravyComponent {
     { name: 'Roti', price: 20 },
     { name: 'Butter Roti', price: 25 },
     { name: 'Plain Kulcha', price: 25 },
-    { name: 'Plain Naan', price: 25 },
-    { name: 'Butter Naan', price: 30 },
+    { name: 'Plain Naan', price: 30 },
+    { name: 'Butter Naan', price: 35 },
     { name: 'Butter Kulcha', price: 35 },
     { name: 'Alu Parota', price: 60 },
   ];

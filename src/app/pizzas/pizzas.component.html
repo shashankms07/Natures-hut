@@ -50,6 +50,12 @@
       *ngFor="let pizza of filteredPizzas"
       class="p-4 border border-gray-300 rounded-lg shadow-md relative"
     >
+
+    <img
+        [src]="pizza.imageUrl"
+       
+        class="w-full h-40 object-cover object-top"
+      />
       <!-- Dot indicator -->
       <div
         class="ml-1.5"
@@ -64,12 +70,12 @@
       <p class="mt-2 flex-grow">{{ pizza.description }}</p>
       <div class="mt-2 flex flex-col space-y-2">
         <div class="flex justify-between">
-          <span class="font-medium">Regular</span>
-          <span class="font-bold">Rs {{ pizza.sizes.regular }}</span>
+          <span class="font-bold">Regular</span>
+          <span class="font-bold">Rs {{ pizza.regularPrice }}</span>
         </div>
         <div class="flex justify-between">
-          <span class="font-medium">Medium</span>
-          <span class="font-bold">Rs {{ pizza.sizes.medium }}</span>
+          <span class="font-bold">Medium</span>
+          <span class="font-bold ">Rs {{ pizza.mediumPrice }}</span>
         </div>
       </div>
     </div>

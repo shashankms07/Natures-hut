@@ -45,19 +45,30 @@
       *ngFor="let starter of filteredStarters"
       class="p-4 border border-gray-300 rounded-lg shadow-md relative"
     >
-      <!-- Dot indicator -->
-      <div
-        class="ml-1.5"
-        [ngClass]="{
-          'absolute top-2 left-2 w-3 h-3 rounded-full': true,
-          'bg-green-500': starter.type === 'Veg',
-          'bg-red-500': starter.type === 'Non-Veg'
-        }"
-      ></div>
-
-      <h2 class="mt-2 font-bold flex-grow">{{ starter.name }}</h2>
-      <p class="mt-2 flex-grow">{{ starter.description }}</p>
-      <h3 class="mt-2 font-bold">Rs {{ starter.price }}</h3>
+      <!-- Image -->
+      <img
+        [src]="starter.imageUrl"
+       
+        class="w-full h-40 object-cover object-top"
+      />
+  
+      <!-- Content -->
+      <div class="">
+        <!-- Dot indicator -->
+        <div
+          class="ml-1.5"
+          [ngClass]="{
+            'absolute top-2 left-2 w-3 h-3 rounded-full': true,
+            'bg-green-500': starter.type === 'Veg',
+            'bg-red-500': starter.type === 'Non-Veg'
+          }"
+        ></div>
+  
+        <h2 class="mt-2 font-bold text-lg truncate">{{ starter.name }}</h2>
+        <p class="mt-1 text-sm text-gray-600 ">{{ starter.description }}</p>
+        <h3 class="mt-2 font-bold ">Rs {{ starter.price }}</h3>
+      </div>
     </div>
   </div>
+  
 </div>
