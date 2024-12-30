@@ -1,4 +1,4 @@
-<nav class="bg-blue-600 p-4">
+<nav class="bg-gray-700 p-4">
   <div class="container mx-auto flex justify-between items-center">
     <!-- Logo -->
     <div class="text-white text-2xl font-bold">
@@ -30,7 +30,7 @@
   ></div>
 
   <!-- Mobile Drawer Menu -->
-  <div [ngClass]="{'block': isMenuOpen, 'hidden': !isMenuOpen, 'fixed': true, 'top-0': true, 'left-0': true, 'h-full': true, 'w-64': true, 'bg-blue-600': true, 'transition-transform': true, 'duration-300': true, '-translate-x-full': !isMenuOpen, 'translate-x-0': isMenuOpen}"
+  <div [ngClass]="{'block': isMenuOpen, 'hidden': !isMenuOpen, 'fixed': true, 'top-0': true, 'left-0': true, 'h-full': true, 'w-64': true, 'bg-gray-700': true, 'transition-transform': true, 'duration-300': true, '-translate-x-full': !isMenuOpen, 'translate-x-0': isMenuOpen}"
        class="z-50">
     <div class="flex justify-end p-4">
       <button (click)="toggleMenu()" class="text-white">
@@ -51,7 +51,8 @@
 
 <!-- Floating Call Button (Removed the phone icon) -->
 <!-- Floating Call Button -->
-<a href="tel:+918971502016" class="fixed bottom-12 right-8 bg-blue-600 text-white p-6 rounded-full shadow-lg hover:bg-blue-500 transition flex items-center justify-center w-12 h-12">
-  <span class="text-lg">📞</span>
+<a href="tel:+918971502016" class="fixed bottom-12 right-8 bg-gray-700 text-white p-6 rounded-full shadow-lg hover:bg-blue-500 transition flex items-center justify-center w-12 h-12">
+  <span class="text-lg" style="color: transparent; text-shadow: 0 0 0 white;">📞</span>
 </a>
+
 

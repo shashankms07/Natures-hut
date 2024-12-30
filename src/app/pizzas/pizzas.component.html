@@ -54,7 +54,7 @@
     <img
         [src]="pizza.imageUrl"
        
-        class="w-full h-40 object-cover object-top"
+        class="w-full h-40 object-cover object-top rounded-lg"
       />
       <!-- Dot indicator -->
       <div
@@ -66,8 +66,8 @@
         }"
       ></div>
 
-      <h2 class="mt-2 font-bold flex-grow">{{ pizza.name }}</h2>
-      <p class="mt-2 flex-grow">{{ pizza.description }}</p>
+      <h2 class="mt-2 text-lg font-bold text-slate-700 flex-grow">{{ pizza.name }}</h2>
+      <p class="mt-2 flex-grow text-sm text-gray-600">{{ pizza.description }}</p>
       <div class="mt-2 flex flex-col space-y-2">
         <div class="flex justify-between">
           <span class="font-bold">Regular</span>

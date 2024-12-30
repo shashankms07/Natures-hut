@@ -29,6 +29,7 @@ import { FishItemsComponent } from './fish-items/fish-items.component';
 import { PastaComponent } from './pasta/pasta.component';
 import { MomosComponent } from './momos/momos.component';
 import { LocationComponent } from './location/location.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 
 
@@ -55,6 +56,7 @@ import { LocationComponent } from './location/location.component';
        PastaComponent,
        MomosComponent,
        LocationComponent,
+       WelcomeComponent,
    
  
     

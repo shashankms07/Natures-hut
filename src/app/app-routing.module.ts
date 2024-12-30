@@ -20,12 +20,13 @@ import { FishItemsComponent } from './fish-items/fish-items.component';
 import { PastaComponent } from './pasta/pasta.component';
 import { MomosComponent } from './momos/momos.component';
 import { LocationComponent } from './location/location.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 
 const routes: Routes = [
-
+  { path: 'welcome', component: WelcomeComponent },
   { path: 'admin', component: AdminComponent },
-  { path: '', redirectTo: 'home', pathMatch: 'full' }, 
+  { path: '', redirectTo: 'welcome', pathMatch: 'full' }, 
   { path: 'home', component: HomeComponent },
   { path: 'burger', component: BurgerComponent }, 
   { path: 'shakes', component: ShakesComponent }, 

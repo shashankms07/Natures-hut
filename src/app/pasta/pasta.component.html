@@ -45,6 +45,11 @@
         *ngFor="let starter of filteredStarters"
         class="p-4 border border-gray-300 rounded-lg shadow-md relative"
       >
+      <img
+      [src]="starter.imageUrl"
+     
+      class="w-full h-40 object-cover object-top rounded-lg"
+    />
         <!-- Dot indicator -->
         <div
           class="ml-1.5"
@@ -55,7 +60,7 @@
           }"
         ></div>
   
-        <h2 class="mt-2 font-bold flex-grow">{{ starter.name }}</h2>
+        <h2 class="mt-2 text-lg font-bold text-slate-700 flex-grow">{{ starter.name }}</h2>
         <p class="mt-2 flex-grow">{{ starter.description }}</p>
         <h3 class="mt-2 font-bold">Rs {{ starter.price }}</h3>
       </div>
