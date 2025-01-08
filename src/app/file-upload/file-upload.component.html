@@ -20,3 +20,12 @@
   <p><strong>Age:</strong> {{ image.age }}</p>
   <p><strong>City:</strong> {{ image.city }}</p>
 </div>
+
+<!-- Display Specific Image by Document ID -->
+<div *ngIf="image" class="p-4 mt-4">
+  <h3 class="text-lg font-semibold mb-4">Image Details:</h3>
+  <img [src]="image.imageUrl"  class="w-10 h-10 border border-gray-300 mb-2" />
+  <p><strong>Name:</strong> {{ image.name }}</p>
+  <p><strong>Age:</strong> {{ image.age }}</p>
+  <p><strong>City:</strong> {{ image.city }}</p>
+</div>
