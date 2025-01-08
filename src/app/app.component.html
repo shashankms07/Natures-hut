@@ -4,6 +4,11 @@
     <div class="text-white text-2xl font-bold">
       Nature's Hut Cafe
     </div>
+    <div routerLink="/cart-items" class=" md:hidden block flex justify-center ">
+      <i class='fas fa-shopping-cart' style='font-size:24px;color: white;'></i><br>
+       <!-- Badge for item count -->
+ 
+    </div>
 
     <!-- Hamburger Icon for Mobile -->
     <div class="md:hidden flex items-center">
@@ -43,7 +48,7 @@
     <ul class="space-y-4 text-white p-4">
       <li routerLink="/home" class="hover:text-gray-300 cursor-pointer" (click)="toggleMenu()">Home</li>
       <li routerLink="/location" class="hover:text-gray-300 cursor-pointer" (click)="toggleMenu()">Location</li>
-      <li routerLink="/cart-items" class="hover:text-gray-300 cursor-pointer" (click)="toggleMenu()">Cart</li>
+     
       <li class="hover:text-gray-300 cursor-pointer" (click)="toggleMenu()">Services</li>
     </ul>
 

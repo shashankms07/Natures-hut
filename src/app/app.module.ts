@@ -18,7 +18,7 @@ import { DessertsComponent } from './desserts/desserts.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { RollsComponent } from './rolls/rolls.component';
 import { AdminComponent } from './admin/admin.component';
-import { ToastrModule } from 'ngx-toastr';
+
 import { CoffeeComponent } from './coffee/coffee.component';
 import { SnacksComponent } from './snacks/snacks.component';
 import { ChickenDryItemsComponent } from './chicken-dry-items/chicken-dry-items.component';
@@ -32,6 +32,8 @@ import { LocationComponent } from './location/location.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { CartItemsComponent } from './cart-items/cart-items.component';
 import { Pizza1Component } from './pizza1/pizza1.component';
+import { ToastrModule } from 'ngx-toastr'; // Import Toastr
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 
 
 
@@ -69,10 +71,9 @@ import { Pizza1Component } from './pizza1/pizza1.component';
   imports: [
     BrowserModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
     ToastrModule.forRoot({
-      positionClass: 'toast-center-center', // Center the toast messages
-      timeOut: 3000, // Duration for toast visibility
-      preventDuplicates: true
+     
     }), // Import ToastrModule with options
    
     AppRoutingModule,

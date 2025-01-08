@@ -3,8 +3,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom toast position center */
 .toast-center-center {
-  top: 50% !important; /* Center vertically */
-  left: 50% !important; /* Center horizontally */
-  transform: translate(-50%, -50%) !important; /* Adjust position to center */
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
 }
