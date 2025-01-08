@@ -1,0 +1,81 @@
+<div class="p-4">
+  <h1 class="text-2xl font-bold mb-4">Your Cart</h1>
+
+  <!-- Cart Items -->
+  <div *ngFor="let item of cart; let i = index" class="mb-4 border-b pb-2">
+    <h2 class="text-lg font-bold">{{ item.name }}</h2>
+    <p class="text-sm text-gray-600">{{ item.description }}</p>
+    <p class="text-sm">Price: Rs {{ item.regularPrice }}</p>
+    <button
+      class="mt-2 px-4 py-2 bg-red-500 text-white rounded"
+      (click)="removeFromCart(i)"
+    >
+      Remove
+    </button>
+  </div>
+
+  <!-- Total Price -->
+  <div class="mt-4 font-bold">Total: Rs {{ getTotalPrice() }}</div>
+
+  <!-- Place Order Button -->
+  <button
+    class="mt-4 px-4 py-2 bg-green-500 text-white rounded"
+    (click)="openPopup()"
+  >
+    Place Order
+  </button>
+</div>
+
+<!-- Popup Modal -->
+<div *ngIf="showPopup" class="fixed inset-0 bg-gray-700 bg-opacity-50 flex justify-center items-center z-50">
+  <div class="bg-white p-6 rounded-lg shadow-lg w-96">
+    <h2 class="text-xl font-bold mb-4">Place Your Order</h2>
+
+    <form [formGroup]="orderForm">
+      <div class="mb-4">
+        <label for="name" class="block text-sm font-medium">Name</label>
+        <input
+          id="name"
+          type="text"
+          formControlName="name"
+          class="mt-1 block w-full border border-gray-300 rounded px-3 py-2"
+        />
+        <div *ngIf="orderForm.controls['name'].invalid && orderForm.controls['name'].touched" class="text-red-500 text-sm">
+          Name is required.
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label for="mobile" class="block text-sm font-medium">Mobile Number</label>
+        <input
+          id="mobile"
+          type="text"
+          formControlName="mobile"
+          class="mt-1 block w-full border border-gray-300 rounded px-3 py-2"
+        />
+        <div *ngIf="orderForm.controls['mobile'].invalid && orderForm.controls['mobile'].touched" class="text-red-500 text-sm">
+          Enter a valid 10-digit mobile number.
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label for="address" class="block text-sm font-medium">Address</label>
+        <textarea
+          id="address"
+          formControlName="address"
+          rows="3"
+          class="mt-1 block w-full border border-gray-300 rounded px-3 py-2"
+        ></textarea>
+        <div *ngIf="orderForm.controls['address'].invalid && orderForm.controls['address'].touched" class="text-red-500 text-sm">
+          Address is required.
+        </div>
+      </div>
+    </form>
+
+    <div class="flex justify-end space-x-2">
+      <button class="px-4 py-2 bg-gray-500 text-white rounded" (click)="closePopup()">Cancel</button>
+      <button class="px-4 py-2 bg-green-500 text-white rounded" (click)="placeOrder()">Place Order</button>
+    </div>
+  </div>
+</div>
+

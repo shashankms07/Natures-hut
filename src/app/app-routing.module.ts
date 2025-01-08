@@ -21,6 +21,9 @@ import { PastaComponent } from './pasta/pasta.component';
 import { MomosComponent } from './momos/momos.component';
 import { LocationComponent } from './location/location.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { CartItemsComponent } from './cart-items/cart-items.component';
+import { Pizza1Component } from './pizza1/pizza1.component';
+
 
 
 const routes: Routes = [
@@ -45,6 +48,8 @@ const routes: Routes = [
   { path: 'momos', component: MomosComponent }, 
   { path: 'location', component: LocationComponent }, 
   { path: 'file-upload', component: FileUploadComponent }, 
+  { path: 'cart-items', component: CartItemsComponent }, 
+  { path: 'pizza1', component: Pizza1Component }, 
 ];
 
 @NgModule({

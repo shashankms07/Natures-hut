@@ -9,7 +9,7 @@ import { AngularFireModule} from '@angular/fire/compat'
 import { environment } from 'src/environment';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FoodComponent } from './food/food.component';
 import { BurgerComponent } from './burger/burger.component';
 import { ShakesComponent } from './shakes/shakes.component';
@@ -30,6 +30,8 @@ import { PastaComponent } from './pasta/pasta.component';
 import { MomosComponent } from './momos/momos.component';
 import { LocationComponent } from './location/location.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { CartItemsComponent } from './cart-items/cart-items.component';
+import { Pizza1Component } from './pizza1/pizza1.component';
 
 
 
@@ -57,6 +59,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
        MomosComponent,
        LocationComponent,
        WelcomeComponent,
+       CartItemsComponent,
+       Pizza1Component,
    
  
     
@@ -64,6 +68,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     ToastrModule.forRoot({
       positionClass: 'toast-center-center', // Center the toast messages
       timeOut: 3000, // Duration for toast visibility
