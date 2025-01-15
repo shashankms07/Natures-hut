@@ -33,7 +33,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { CartItemsComponent } from './cart-items/cart-items.component';
 import { Pizza1Component } from './pizza1/pizza1.component';
 import { ToastrModule } from 'ngx-toastr'; // Import Toastr
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NoodlesComponent } from './noodles/noodles.component'; 
 
 
 
@@ -63,6 +64,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
        WelcomeComponent,
        CartItemsComponent,
        Pizza1Component,
+       NoodlesComponent,
    
  
     

@@ -23,6 +23,7 @@ import { LocationComponent } from './location/location.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { CartItemsComponent } from './cart-items/cart-items.component';
 import { Pizza1Component } from './pizza1/pizza1.component';
+import { NoodlesComponent } from './noodles/noodles.component';
 
 
 
@@ -50,6 +51,7 @@ const routes: Routes = [
   { path: 'file-upload', component: FileUploadComponent }, 
   { path: 'cart-items', component: CartItemsComponent }, 
   { path: 'pizza1', component: Pizza1Component }, 
+  { path: 'noodles', component: NoodlesComponent }, 
 ];
 
 @NgModule({

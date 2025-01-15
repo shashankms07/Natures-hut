@@ -27,6 +27,8 @@ export class AdminComponent {
   selectedFile: File | null = null;
   imagePreview: string | null = null;
 
+  
+
   constructor(
     private firestore: AngularFirestore,
     private storage: AngularFireStorage,
@@ -136,6 +138,13 @@ export class AdminComponent {
       };
     } else if (this.selectedCategory === 'momos') {
       collectionPath = 'Natures hut/Momos/Items';
+      item = {
+        name: this.itemName,
+        price: this.itemPrice,
+        type: this.itemType
+      };
+    } else if (this.selectedCategory === 'noodles') {
+      collectionPath = 'Natures hut/Noodles/Items';
       item = {
         name: this.itemName,
         price: this.itemPrice,
