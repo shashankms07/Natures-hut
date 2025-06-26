@@ -18,12 +18,10 @@ export class SnacksComponent {
     { name: 'Peanut Masala', price: 50 },
     { name: 'Masala Papad', price: 50 },
     { name: 'Onion Pakoda', price: 100 },
-    { name: 'Capsicum Ring', price: 100 },
-    { name: 'Capsicum Bajji', price: 80 },
     { name: 'Finger Chips', price: 100 },
     { name: 'Veg Vada', price: 100 },
     { name: 'Baby Corn Kabab', price: 100 },
-    { name: 'Baby Corn Manchurian', price: 100 },
+    { name: 'Baby Corn Manchurian', price: 130 },
     { name: 'Baby Corn Chilli', price: 100 },
     { name: 'Baby Corn Pepper Fry', price: 100 },
     { name: 'Gobi Manchurian', price: 80 },
@@ -32,6 +30,9 @@ export class SnacksComponent {
     { name: 'Paneer 65 Dry', price: 160 },
     { name: 'Paneer Pepper Dry', price: 160 },
     { name: 'Paneer Manchurian', price: 150 },
+    { name: 'Mushroom Manchurian', price: 130 },
+    { name: 'Mushroom Pepper Dry', price: 130 },
+    { name: 'Baby Corn Pepper Dry', price: 130 },
     
   ];
 
@@ -40,8 +41,8 @@ export class SnacksComponent {
     { name: 'Omlet', price: 30 },
     { name: 'Egg Burji', price: 50 },
     { name: 'Egg Chilli', price: 80 },
-    { name: 'Egg Manchurian', price: 80 },
-    { name: 'Egg Pakoda', price: 80 },
+    { name: 'Egg Manchurian', price: 130 },
+    { name: 'Egg Pakoda', price: 100 },
   ];
 
   
