@@ -5,9 +5,9 @@
       Nature's Hut Cafe
     </div>
     <div routerLink="/cart-items" class=" md:hidden block flex justify-center ">
-      <i class='fas fa-shopping-cart' style='font-size:24px;color: white;'></i><br>
-       <!-- Badge for item count -->
- 
+      <!-- <i class='fas fa-shopping-cart' style='font-size:24px;color: white;'></i><br> -->
+      <!-- Badge for item count -->
+
     </div>
 
     <!-- Hamburger Icon for Mobile -->
@@ -23,21 +23,18 @@
     <ul class="hidden md:flex space-x-6 text-white">
       <li routerLink="/home" class="hover:text-gray-300 cursor-pointer">Home</li>
       <li routerLink="/location" class="hover:text-gray-300 cursor-pointer">Location</li>
-      <li routerLink="/cart-items" class="hover:text-gray-300 cursor-pointer" >Cart</li>
+      <li routerLink="/cart-items" class="hover:text-gray-300 cursor-pointer">Cart</li>
       <li class="hover:text-gray-300 cursor-pointer">Services</li>
     </ul>
   </div>
 
   <!-- Background overlay for closing the menu -->
-  <div 
-    *ngIf="isMenuOpen" 
-    class="fixed inset-0 bg-black bg-opacity-50 z-40"
-    (click)="toggleMenu()"
-  ></div>
+  <div *ngIf="isMenuOpen" class="fixed inset-0 bg-black bg-opacity-50 z-40" (click)="toggleMenu()"></div>
 
   <!-- Mobile Drawer Menu -->
-  <div [ngClass]="{'block': isMenuOpen, 'hidden': !isMenuOpen, 'fixed': true, 'top-0': true, 'left-0': true, 'h-full': true, 'w-64': true, 'bg-gray-700': true, 'transition-transform': true, 'duration-300': true, '-translate-x-full': !isMenuOpen, 'translate-x-0': isMenuOpen}"
-       class="z-50">
+  <div
+    [ngClass]="{'block': isMenuOpen, 'hidden': !isMenuOpen, 'fixed': true, 'top-0': true, 'left-0': true, 'h-full': true, 'w-64': true, 'bg-gray-700': true, 'transition-transform': true, 'duration-300': true, '-translate-x-full': !isMenuOpen, 'translate-x-0': isMenuOpen}"
+    class="z-50">
     <div class="flex justify-end p-4">
       <button (click)="toggleMenu()" class="text-white">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -48,22 +45,21 @@
     <ul class="space-y-4 text-white p-4">
       <li routerLink="/home" class="hover:text-gray-300 cursor-pointer" (click)="toggleMenu()">Home</li>
       <li routerLink="/location" class="hover:text-gray-300 cursor-pointer" (click)="toggleMenu()">Location</li>
-     
+
       <li class="hover:text-gray-300 cursor-pointer" (click)="toggleMenu()">Services</li>
     </ul>
 
-    
+
   </div>
 
-  
+
 </nav>
 
 <router-outlet></router-outlet>
 
 <!-- Floating Call Button (Removed the phone icon) -->
 <!-- Floating Call Button -->
-<a href="tel:+918971502016" class="fixed bottom-12 right-8 bg-gray-700 text-white p-6 rounded-full shadow-lg hover:bg-blue-500 transition flex items-center justify-center w-12 h-12">
+<a href="tel:+918971502016"
+  class="fixed bottom-12 right-8 bg-gray-700 text-white p-6 rounded-full shadow-lg hover:bg-blue-500 transition flex items-center justify-center w-12 h-12">
   <span class="text-lg" style="color: transparent; text-shadow: 0 0 0 white;">📞</span>
 </a>
-
-

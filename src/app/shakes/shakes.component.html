@@ -1,110 +1,139 @@
-<div class="p-4">
-  <!-- Tabs -->
-  <div class="flex flex-col border-b border-gray-300 mb-4">
-    
-    <!-- Tabs Navigation -->
-    <div class="mb-4 flex">
-      <button 
-        (click)="selectTab('shakes')" 
-        [ngClass]="{
-          'text-white bg-blue-500': selectedTab === 'shakes',
-          'text-blue-500 bg-white': selectedTab !== 'shakes'
-        }"
-        class="py-2 px-4 font-semibold flex-1 border border-gray-300"
-      >
-        Shakes
+<div class="max-w-7xl mx-auto px-4 py-8">
+  <!-- Header Section -->
+  <header class="text-center mb-12">
+    <h1 class="heading-font text-4xl md:text-5xl font-bold text-gray-800 mb-2 flex items-center justify-center">
+      <i class="fas fa-glass-martini-alt mr-3 text-amber-600"></i>Shakes & Beverages
+    </h1>
+    <div class="section-divider w-32 mx-auto my-4"></div>
+    <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+      Refresh yourself with our delicious shakes, ice-based drinks, and fizzy soda creations crafted to delight your
+      taste buds.
+    </p>
+  </header>
+
+  <!-- Filter Tabs -->
+  <div class="flex justify-center mb-10">
+    <div class="inline-flex rounded-lg border border-gray-200 bg-white p-1 shadow-sm">
+      <button class="filter-btn px-6 py-3 rounded-md font-medium transition-all duration-300"
+        [ngClass]="{'active active-all': selectedTab === 'shakes'}" (click)="selectTab('shakes')">
+        <i class="fas fa-cocktail mr-2"></i>Shakes
       </button>
-      <button 
-        (click)="selectTab('ice-base')" 
-        [ngClass]="{
-          'text-white bg-blue-500': selectedTab === 'ice-base',
-          'text-blue-500 bg-white': selectedTab !== 'ice-base'
-        }"
-        class="py-2 px-4 font-semibold flex-1 border border-gray-300"
-      >
-        Ice Base
+      <button class="filter-btn px-6 py-3 rounded-md font-medium transition-all duration-300"
+        [ngClass]="{'active active-all': selectedTab === 'ice-base'}" (click)="selectTab('ice-base')">
+        <i class="fas fa-ice-cream mr-2"></i>Ice Base
       </button>
-      <button 
-        (click)="selectTab('soda-base')" 
-        [ngClass]="{
-          'text-white bg-blue-500': selectedTab === 'soda-base',
-          'text-blue-500 bg-white': selectedTab !== 'soda-base'
-        }"
-        class="py-2 px-4 font-semibold flex-1 border border-gray-300"
-      >
-        Soda Base
+      <button class="filter-btn px-6 py-3 rounded-md font-medium transition-all duration-300"
+        [ngClass]="{'active active-all': selectedTab === 'soda-base'}" (click)="selectTab('soda-base')">
+        <i class="fas fa-glass-whiskey mr-2"></i>Soda Base
       </button>
     </div>
   </div>
-  
 
- 
-  <!-- Tab Content -->
-  <div>
-    <div *ngIf="selectedTab === 'shakes'">
-      <h1 class="text-2xl font-bold mb-4">Shakes</h1>
-      <h1 class="text-xl mb-4">Indulge in our creamy shakes, blended to perfection for a refreshing treat.</h1>
-      <div class="mt-3 grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-4">
-        <div
-          *ngFor="let shake of shakes"
-          class="p-4 border border-gray-300 rounded-lg shadow-md relative"
-        >
-          <!-- Dot indicator -->
-          <div class="ml-1.5" [ngClass]="{
-            'absolute top-2 left-2 w-3 h-3 rounded-full': true,
-            'bg-green-500': shake.type === 'Veg',
-            'bg-red-500': shake.type === 'Non-Veg'
-          }"></div>
-          <h2 class="text-lg font-bold text-slate-700 mt-2">{{ shake.name }}</h2>
-          <p class="mt-2 text-sm text-gray-600">{{ shake.description }}</p>
-          <h3 class="mt-2 font-bold">Rs {{ shake.price }}</h3>
+  <!-- Shakes Tab Content -->
+  <div *ngIf="selectedTab === 'shakes'">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div *ngFor="let shake of shakes"
+        class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 relative p-6">
+        <!-- Type Indicator -->
+
+        <div class="absolute top-4 left-4 veg-indicator" [ngClass]="{
+                            'bg-green-600': shake.type === 'Veg',
+                            'bg-red-600': shake.type === 'Non-Veg'
+                        }">
+          <i class="fas" [ngClass]="{
+                                'fa-leaf': shake.type === 'Veg',
+                                'fa-drumstick-bite': shake.type === 'Non-Veg'
+                            }"></i>
         </div>
+
+        <div class="absolute top-4 right-4 price-tag" [ngClass]="{
+       'price-amber': shake.type === 'All',
+       'price-green': shake.type === 'Veg',
+       'price-red': shake.type === 'Non-Veg'
+     }">
+          <!-- Price -->
+
+          Rs {{ shake.price }}
+        </div>
+        <!-- Content -->
+        <h2 class="text-xl font-bold text-gray-800 mb-2 truncate">{{ shake.name }}</h2>
+        <p class="text-gray-600 line-clamp-2">{{ shake.description }}</p>
       </div>
     </div>
-
-    <div *ngIf="selectedTab === 'ice-base'">
-      <!-- Ice Base Tab Content -->
-      <h1 class="text-2xl font-bold mb-4">Ice Base</h1>
-      <h1 class="text-xl mb-4">Cool down with our ice-based delights, packed with flavors to chill your senses.</h1>
-      <div class="mt-3 grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-4">
-        <div
-          *ngFor="let iceBase of iceBases"
-          class="p-4 border border-gray-300 rounded-lg shadow-md relative"
-        >
-          <!-- Dot indicator -->
-          <div class="ml-1.5" [ngClass]="{
-            'absolute top-2 left-2 w-3 h-3 rounded-full': true,
-            'bg-green-500': iceBase.type === 'Veg',
-            'bg-red-500': iceBase.type === 'Non-Veg'
-          }"></div>
-          <h2 class="text-lg font-bold text-slate-700 mt-2">{{ iceBase.name }}</h2>
-          <p class="mt-2 text-sm text-gray-600">{{ iceBase.description }}</p>
-          <h3 class="mt-2 font-bold">Rs {{ iceBase.price }}</h3>
-        </div>
-      </div>
-      <!-- Your Ice Base content here -->
+    <div *ngIf="shakes.length === 0" class="text-center py-12">
+      <i class="fas fa-cocktail text-4xl text-gray-300 mb-4"></i>
+      <h3 class="text-xl font-medium text-gray-500">No shakes found</h3>
+      <p class="text-gray-400">Try selecting a different filter</p>
     </div>
+  </div>
 
-    <div *ngIf="selectedTab === 'soda-base'">
-      <!-- Soda Base Tab Content -->
-      <h1 class="text-2xl font-bold mb-4">Soda Base</h1>
-      <h1 class="text-xl mb-4">Quench your thirst with our fizzy soda creations, bursting with bold and zesty flavors.</h1>
-      <div class="mt-3 grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-4">
-        <div
-          *ngFor="let sodaBase of sodaBases"
-          class="p-4 border border-gray-300 rounded-lg shadow-md relative"
-        >
-          <!-- Dot indicator -->
-          <div class="ml-1.5" [ngClass]="{
-            'absolute top-2 left-2 w-3 h-3 rounded-full': true,
-            'bg-green-500': sodaBase.type === 'Veg',
-            'bg-red-500': sodaBase.type === 'Non-Veg'
-          }"></div>
-          <h2 class="text-lg font-bold text-slate-700 mt-2">{{ sodaBase.name }}</h2>
-          <p class="mt-2 text-sm text-gray-600">{{ sodaBase.description }}</p>
-          <h3 class="mt-2 font-bold">Rs {{ sodaBase.price }}</h3>
+  <!-- Ice Base Tab Content -->
+  <div *ngIf="selectedTab === 'ice-base'">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div *ngFor="let iceBase of iceBases"
+        class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 relative p-6">
+
+        <div class="absolute top-4 left-4 veg-indicator" [ngClass]="{
+                            'bg-green-600': iceBase.type === 'Veg',
+                            'bg-red-600': iceBase.type === 'Non-Veg'
+                        }">
+          <i class="fas" [ngClass]="{
+                                'fa-leaf': iceBase.type === 'Veg',
+                                'fa-drumstick-bite': iceBase.type === 'Non-Veg'
+                            }"></i>
         </div>
+
+
+        <div class="absolute top-4 right-4 price-tag" [ngClass]="{
+       'price-amber': iceBase.type === 'All',
+       'price-green': iceBase.type === 'Veg',
+       'price-red': iceBase.type === 'Non-Veg'
+     }">
+          Rs {{ iceBase.price }}
+        </div>
+        <h2 class="text-xl font-bold text-gray-800 mb-2 truncate">{{ iceBase.name }}</h2>
+        <p class="text-gray-600 line-clamp-2">{{ iceBase.description }}</p>
       </div>
+    </div>
+    <div *ngIf="iceBases.length === 0" class="text-center py-12">
+      <i class="fas fa-ice-cream text-4xl text-gray-300 mb-4"></i>
+      <h3 class="text-xl font-medium text-gray-500">No ice bases found</h3>
+      <p class="text-gray-400">Try selecting a different filter</p>
+    </div>
+  </div>
+
+  <!-- Soda Base Tab Content -->
+  <div *ngIf="selectedTab === 'soda-base'">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div *ngFor="let sodaBase of sodaBases"
+        class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 relative p-6">
+
+        <div class="absolute top-4 left-4 veg-indicator" [ngClass]="{
+                            'bg-green-600': sodaBase.type === 'Veg',
+                            'bg-red-600': sodaBase.type === 'Non-Veg'
+                        }">
+          <i class="fas" [ngClass]="{
+                                'fa-leaf': sodaBase.type === 'Veg',
+                                'fa-drumstick-bite': sodaBase.type === 'Non-Veg'
+                            }"></i>
+        </div>
+
+
+        <div class="absolute top-4 right-4 price-tag" [ngClass]="{
+       'price-amber': sodaBase.type === 'All',
+       'price-green': sodaBase.type === 'Veg',
+       'price-red': sodaBase.type === 'Non-Veg'
+     }">
+          Rs {{ sodaBase.price }}
+        </div>
+        <h2 class="text-xl font-bold text-gray-800 mb-2 truncate">{{ sodaBase.name }}</h2>
+        <p class="text-gray-600 line-clamp-2">{{ sodaBase.description }}</p>
+      </div>
+    </div>
+    <div *ngIf="sodaBases.length === 0" class="text-center py-12">
+      <i class="fas fa-glass-whiskey text-4xl text-gray-300 mb-4"></i>
+      <h3 class="text-xl font-medium text-gray-500">No soda bases found</h3>
+      <p class="text-gray-400">Try selecting a different filter</p>
     </div>
   </div>
 </div>

@@ -9,12 +9,17 @@ import { Router } from '@angular/router';
 })
 export class WelcomeComponent {
 
-  constructor(private router: Router) {}
+  countdown = 3; // seconds
+
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
-    setTimeout(() => {
-      this.router.navigate(['/home']);
-    }, 2000); // Redirect after 1 seconds
+    const interval = setInterval(() => {
+      this.countdown--;
+      if (this.countdown === 0) {
+        clearInterval(interval);
+        this.router.navigate(['/home']); // redirect to home
+      }
+    }, 1000);
   }
-
 }

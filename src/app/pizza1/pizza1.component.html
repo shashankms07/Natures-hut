@@ -1,52 +1,342 @@
-<!-- Pizza Cards -->
-<div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-4">
-    <div
-      *ngFor="let pizza of filteredPizzas"
-      class="p-4 border border-gray-300 rounded-lg shadow-md relative"
-    >
-      <img
-        [src]="pizza.imageUrl"
-        class="w-full h-40 object-cover object-top rounded-lg"
-      />
-      <!-- Dot indicator -->
-      <div
-        class="ml-1.5"
-        [ngClass]="{
-          'absolute top-2 left-2 w-3 h-3 rounded-full': true,
-          'bg-green-500': pizza.type === 'Veg',
-          'bg-red-500': pizza.type === 'Non-Veg'
-        }"
-      ></div>
-  
-      <h2 class="mt-2 text-lg font-bold text-slate-700 flex-grow">
-        {{ pizza.name }}
-      </h2>
-      <p class="mt-2 flex-grow text-sm text-gray-600">
-        {{ pizza.description }}
-      </p>
-      <div class="mt-2 flex flex-col space-y-2">
-        <div class="flex justify-between">
-          <span class="font-bold">Regular</span>
-          <span class="font-bold">Rs {{ pizza.regularPrice }}</span>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cafe Menu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .heading-font {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .card-hover {
+      transition: all 0.3s ease;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .tab-active {
+      position: relative;
+    }
+
+    .tab-active::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background-color: #d4a55e;
+      border-radius: 2px;
+    }
+
+    .veg-indicator {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      color: white;
+    }
+
+    .price-tag {
+      background: linear-gradient(135deg, #d4a55e, #b8860b);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, #d4a55e, transparent);
+    }
+
+    .filter-btn {
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .filter-btn.active {
+      color: white;
+    }
+
+    .filter-btn.active-all {
+      background-color: #d4a55e;
+    }
+
+    .filter-btn.active-veg {
+      background-color: #16a34a;
+    }
+
+    .filter-btn.active-nonveg {
+      background-color: #dc2626;
+    }
+
+    .starter-image {
+      transition: transform 0.5s ease;
+    }
+
+    .starter-card:hover .starter-image {
+      transform: scale(1.05);
+    }
+
+    .price-amber {
+      background: linear-gradient(135deg, #d4a55e, #b8860b);
+      color: white;
+    }
+
+    .price-green {
+      background: linear-gradient(135deg, #16a34a, #15803d);
+      color: white;
+    }
+
+    .price-red {
+      background: linear-gradient(135deg, #dc2626, #b91c1c);
+      color: white;
+    }
+
+    .menu-header {
+      background: linear-gradient(135deg, rgba(212, 165, 94, 0.1), rgba(184, 134, 11, 0.1));
+      border-left: 4px solid #d4a55e;
+    }
+
+    .daba-menu-header {
+      background: linear-gradient(135deg, rgba(212, 165, 94, 0.1), rgba(184, 134, 11, 0.1));
+      border-left: 4px solid #d4a55e;
+    }
+
+    .daba-item {
+      transition: all 0.3s ease;
+      border-left: 3px solid transparent;
+    }
+
+    .daba-item:hover {
+      transform: translateX(5px);
+      border-left-color: #d4a55e;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50">
+  <div class="max-w-7xl mx-auto p-4">
+    <!-- Header Section -->
+    <div class="text-center mb-8 py-6">
+      <h1 class="heading-font text-4xl font-bold text-amber-800 mb-2">What's on your mind?</h1>
+      <p class="text-gray-600 max-w-2xl mx-auto">Discover our delicious selection of cafe favorites and authentic
+        daba-style cuisine</p>
+    </div>
+
+    <!-- Cafe Menu Section -->
+    <div class="menu-header p-6 rounded-xl mb-8">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="heading-font text-3xl font-bold text-amber-900">Cafe Menu</h2>
+        <span class="price-tag">Fresh & Tasty</span>
+      </div>
+      <p class="text-gray-700 mb-6">Our cafe offers a variety of delicious options from light snacks to hearty meals</p>
+
+      <div class="grid grid-cols-2 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <!-- Starters Card -->
+        <div routerLink="/food"
+          class="bg-white border border-gray-200 rounded-xl shadow-md overflow-hidden card-hover cursor-pointer">
+          <div class="relative h-40 overflow-hidden">
+            <img src="assets/images/Tandoori-Platter-scaled-1.jpg" class="w-full h-full object-cover starter-image"
+              alt="Starters">
+
+          </div>
+          <div class="p-4 text-center">
+            <div class="font-bold text-lg text-gray-800">Starters</div>
+            <div class="text-sm text-gray-600 mt-1">Tandoori & More</div>
+          </div>
+        </div>
+
+        <!-- Pizza Card -->
+        <div routerLink="/pizzas"
+          class="bg-white border border-gray-200 rounded-xl shadow-md overflow-hidden card-hover cursor-pointer">
+          <div class="relative h-40 overflow-hidden">
+            <img src="assets/596343.jpg" class="w-full h-full object-cover starter-image" alt="Pizza">
+
+          </div>
+          <div class="p-4 text-center">
+            <div class="font-bold text-lg text-gray-800">Pizza</div>
+            <div class="text-sm text-gray-600 mt-1">Italian Specialties</div>
+          </div>
+        </div>
+
+        <!-- Rolls Card -->
+        <div routerLink="/rolls"
+          class="bg-white border border-gray-200 rounded-xl shadow-md overflow-hidden card-hover cursor-pointer">
+          <div class="relative h-40 overflow-hidden">
+            <img src="assets/images/Peppy-Chicken-Roll_1.jpg" class="w-full h-full object-cover starter-image"
+              alt="Rolls">
+
+          </div>
+          <div class="p-4 text-center">
+            <div class="font-bold text-lg text-gray-800">Rolls</div>
+            <div class="text-sm text-gray-600 mt-1">Wrapped Delights</div>
+          </div>
+        </div>
+
+        <!-- Pasta Card -->
+        <div routerLink="/pasta"
+          class="bg-white border border-gray-200 rounded-xl shadow-md overflow-hidden card-hover cursor-pointer">
+          <div class="relative h-40 overflow-hidden">
+            <img src="assets/images/thumb-1920-1308370.jpg" class="w-full h-full object-cover starter-image"
+              alt="Pasta">
+
+          </div>
+          <div class="p-4 text-center">
+            <div class="font-bold text-lg text-gray-800">Pasta</div>
+            <div class="text-sm text-gray-600 mt-1">Italian Classics</div>
+          </div>
+        </div>
+
+        <!-- Momos Card -->
+        <div routerLink="/momos"
+          class="bg-white border border-gray-200 rounded-xl shadow-md overflow-hidden card-hover cursor-pointer">
+          <div class="relative h-40 overflow-hidden">
+            <img src="assets/images/steamed-momos-wontons-1957616-hero-01-1c59e22bad0347daa8f0dfe12894bc3c.jpg"
+              class="w-full h-full object-cover starter-image" alt="Momos">
+
+          </div>
+          <div class="p-4 text-center">
+            <div class="font-bold text-lg text-gray-800">Momos</div>
+            <div class="text-sm text-gray-600 mt-1">Steamed & Fried</div>
+          </div>
+        </div>
+
+        <!-- Desserts Card -->
+        <div routerLink="/desserts"
+          class="bg-white border border-gray-200 rounded-xl shadow-md overflow-hidden card-hover cursor-pointer">
+          <div class="relative h-40 overflow-hidden">
+            <img src="assets/images/unnamed.jpg" class="w-full h-full object-cover starter-image" alt="Desserts">
+
+          </div>
+          <div class="p-4 text-center">
+            <div class="font-bold text-lg text-gray-800">Desserts</div>
+            <div class="text-sm text-gray-600 mt-1">Sweet Endings</div>
+          </div>
+        </div>
+
+        <!-- Cold Beverages Card -->
+        <div routerLink="/shakes"
+          class="bg-white border border-gray-200 rounded-xl shadow-md overflow-hidden card-hover cursor-pointer">
+          <div class="relative h-40 overflow-hidden">
+            <img src="assets/images/wp7289347.jpg" class="w-full h-full object-cover starter-image"
+              alt="Cold Beverages">
+
+          </div>
+          <div class="p-4 text-center">
+            <div class="font-bold text-lg text-gray-800">Cold Beverages</div>
+            <div class="text-sm text-gray-600 mt-1">Refreshing Drinks</div>
+          </div>
+        </div>
+
+        <!-- Hot Beverages Card -->
+        <div routerLink="/coffee"
+          class="bg-white border border-gray-200 rounded-xl shadow-md overflow-hidden card-hover cursor-pointer">
+          <div class="relative h-40 overflow-hidden">
+            <img src="assets/images/mug_coffee_PNG16824.png" class="w-full h-full object-cover starter-image"
+              alt="Hot Beverages">
+
+          </div>
+          <div class="p-4 text-center">
+            <div class="font-bold text-lg text-gray-800">Hot Beverages</div>
+            <div class="text-sm text-gray-600 mt-1">Warm & Cozy</div>
+          </div>
         </div>
       </div>
-  
-      <!-- Add to Cart / Remove from Cart Button -->
-      <button
-        *ngIf="!pizza.isInCart"
-        class="bg-blue-500 text-white px-4 py-2 mt-4 rounded hover:bg-blue-600 w-full"
-        (click)="addToCart(pizza)"
-      >
-        Add to Cart
-      </button>
-  
-      <button
-        *ngIf="pizza.isInCart"
-        class="bg-green-500 text-white px-4 py-2 mt-4 rounded hover:bg-green-600 w-full"
-        (click)="removeFromCart(pizza)"
-      >
-        Remove from Cart
-      </button>
+    </div>
+
+    <!-- Daba Menu Section -->
+    <div class="daba-menu-header p-6 rounded-xl mb-8">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="heading-font text-3xl font-bold text-amber-900">Daba Menu</h2>
+        <span class="price-tag">Authentic Flavors</span>
+      </div>
+      <p class="text-gray-700 mb-6">Experience the authentic taste of traditional daba-style cooking</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Snacks -->
+        <div routerLink="/snacks" class="daba-item p-4 bg-white shadow-md rounded-lg cursor-pointer">
+          <div class="flex justify-between items-center">
+            <h3 class="text-xl font-bold text-gray-800">Snacks</h3>
+
+          </div>
+          <p class="text-gray-600 text-sm mt-1">Traditional Indian snacks and quick bites</p>
+        </div>
+
+        <!-- Chicken Dry Items -->
+        <div routerLink="/chicken-dry-items" class="daba-item p-4 bg-white shadow-md rounded-lg cursor-pointer">
+          <div class="flex justify-between items-center">
+            <h3 class="text-xl font-bold text-gray-800">Chicken Dry Items</h3>
+
+          </div>
+          <p class="text-gray-600 text-sm mt-1">Spicy and flavorful chicken preparations</p>
+        </div>
+
+        <!-- Tandoori Dry Items -->
+        <div routerLink="/tandoori-dry-items" class="daba-item p-4 bg-white shadow-md rounded-lg cursor-pointer">
+          <div class="flex justify-between items-center">
+            <h3 class="text-xl font-bold text-gray-800">Tandoori Dry Items</h3>
+
+          </div>
+          <p class="text-gray-600 text-sm mt-1">Clay oven specialties with authentic flavors</p>
+        </div>
+
+        <!-- Roti & Gravy Items -->
+        <div routerLink="/roti-gravy" class="daba-item p-4 bg-white shadow-md rounded-lg cursor-pointer">
+          <div class="flex justify-between items-center">
+            <h3 class="text-xl font-bold text-gray-800">Roti & Gravy Items</h3>
+
+          </div>
+          <p class="text-gray-600 text-sm mt-1">Bread with delicious curry options</p>
+        </div>
+
+        <!-- Noodles -->
+        <div routerLink="/noodles" class="daba-item p-4 bg-white shadow-md rounded-lg cursor-pointer">
+          <div class="flex justify-between items-center">
+            <h3 class="text-xl font-bold text-gray-800">Noodles</h3>
+
+          </div>
+          <p class="text-gray-600 text-sm mt-1">Stir-fried noodles with vegetables and sauces</p>
+        </div>
+
+        <!-- Rice Items -->
+        <div routerLink="/rice-items" class="daba-item p-4 bg-white shadow-md rounded-lg cursor-pointer">
+          <div class="flex justify-between items-center">
+            <h3 class="text-xl font-bold text-gray-800">Rice Items</h3>
+
+          </div>
+          <p class="text-gray-600 text-sm mt-1">Flavorful rice dishes from different regions</p>
+        </div>
+
+        <!-- Sea Food -->
+        <div routerLink="/fish-items" class="daba-item p-4 bg-white shadow-md rounded-lg cursor-pointer">
+          <div class="flex justify-between items-center">
+            <h3 class="text-xl font-bold text-gray-800">Sea Food</h3>
+
+          </div>
+          <p class="text-gray-600 text-sm mt-1">Fresh seafood delicacies</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Note -->
+    <div class="text-center py-6 text-gray-600 text-sm">
+      <p>All prices are inclusive of taxes. Menu items may vary based on availability.</p>
     </div>
   </div>
-  
+</body>
+
+</html>

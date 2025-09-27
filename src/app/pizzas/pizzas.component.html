@@ -1,84 +1,95 @@
-<div class="p-4">
+<div class="max-w-7xl mx-auto px-4 py-8">
+  <!-- Header Section -->
+  <header class="text-center mb-12">
+    <h1 class="heading-font text-4xl md:text-5xl font-bold text-gray-800 mb-2 flex items-center justify-center">
+      <i class="fas fa-pizza-slice mr-3 text-amber-600"></i>Pizzas
+    </h1>
+    <div class="section-divider w-32 mx-auto my-4"></div>
+    <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+      Cheesilicious pizzas to make every day extraordinary.
+    </p>
+  </header>
 
-  <h1 class="text-2xl font-bold mb-4 flex items-center">
-    Pizzas
-  </h1>
+  <!-- Filter Tabs -->
+  <div class="flex justify-center mb-10">
+    <div class="inline-flex rounded-lg border border-gray-200 bg-white p-1 shadow-sm">
+      <button class="filter-btn px-6 py-3 rounded-md font-medium transition-all duration-300" [ngClass]="{
+          'active active-all': selectedTab === 'All'
+        }" (click)="selectTab('All')">
+        <i class="fas fa-utensils mr-2"></i>All
+      </button>
 
-  <div class="border-b border-gray-300 -mt-2 mb-2"></div>
+      <button class="filter-btn px-6 py-3 rounded-md font-medium transition-all duration-300" [ngClass]="{
+          'active active-veg': selectedTab === 'Veg'
+        }" (click)="selectTab('Veg')">
+        <i class="fas fa-leaf mr-2"></i>Veg
+      </button>
 
-  <h1 class="text-xl mb-4">
-    Cheesilicious pizzas to make every day extraordinary.
-  </h1>
-
-  <!-- Tabs for filtering (All, Veg, Non-Veg) -->
-  <div class="flex space-x-4 mb-6">
-    <button
-      class="px-4 py-2 border rounded"
-      [ngClass]="{
-        'bg-blue-500 text-white': selectedTab === 'All',
-        'border-gray-300': selectedTab !== 'All'
-      }"
-      (click)="selectTab('All')"
-    >
-      All
-    </button>
-    <button
-      class="px-4 py-2 border rounded"
-      [ngClass]="{
-        'bg-green-500 text-white': selectedTab === 'Veg',
-        'border-gray-300': selectedTab !== 'Veg'
-      }"
-      (click)="selectTab('Veg')"
-    >
-      Veg
-    </button>
-    <button
-      class="px-4 py-2 border rounded"
-      [ngClass]="{
-        'bg-red-500 text-white': selectedTab === 'Non-Veg',
-        'border-gray-300': selectedTab !== 'Non-Veg'
-      }"
-      (click)="selectTab('Non-Veg')"
-    >
-      Non-Veg
-    </button>
-  </div>
-
-  <!-- Pizza Cards -->
-  <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-4">
-    <div
-      *ngFor="let pizza of filteredPizzas"
-      class="p-4 border border-gray-300 rounded-lg shadow-md relative"
-    >
-
-    <img
-        [src]="pizza.imageUrl"
-       
-        class="w-full h-40 object-cover object-top rounded-lg"
-      />
-      <!-- Dot indicator -->
-      <div
-        class="ml-1.5"
-        [ngClass]="{
-          'absolute top-2 left-2 w-3 h-3 rounded-full': true,
-          'bg-green-500': pizza.type === 'Veg',
-          'bg-red-500': pizza.type === 'Non-Veg'
-        }"
-      ></div>
-
-      <h2 class="mt-2 text-lg font-bold text-slate-700 flex-grow">{{ pizza.name }}</h2>
-      <p class="mt-2 flex-grow text-sm text-gray-600">{{ pizza.description }}</p>
-      <div class="mt-2 flex flex-col space-y-2">
-        <div class="flex justify-between">
-          <span class="font-bold">Regular</span>
-          <span class="font-bold">Rs {{ pizza.regularPrice }}</span>
-        </div>
-        <div class="flex justify-between">
-          <span class="font-bold">Medium</span>
-          <span class="font-bold ">Rs {{ pizza.mediumPrice }}</span>
-        </div>
-      </div>
+      <button class="filter-btn px-6 py-3 rounded-md font-medium transition-all duration-300" [ngClass]="{
+          'active active-nonveg': selectedTab === 'Non-Veg'
+        }" (click)="selectTab('Non-Veg')">
+        <i class="fas fa-drumstick-bite mr-2"></i>Non-Veg
+      </button>
     </div>
   </div>
 
+  <!-- Pizza Cards Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div *ngFor="let pizza of filteredPizzas"
+      class="starter-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover relative">
+      <!-- Image Container -->
+      <div class="relative overflow-hidden">
+        <img [src]="pizza.imageUrl" alt="{{ pizza.name }}" class="w-full h-56 object-cover starter-image" />
+
+        <!-- Type Indicator -->
+        <div class="absolute top-4 left-4 veg-indicator" [ngClass]="{
+          'bg-green-600': pizza.type === 'Veg',
+          'bg-red-600': pizza.type === 'Non-Veg'
+        }">
+          <i class="fas" [ngClass]="{
+            'fa-leaf': pizza.type === 'Veg',
+            'fa-drumstick-bite': pizza.type === 'Non-Veg'
+          }"></i>
+        </div>
+
+
+      </div>
+
+      <!-- Content -->
+
+      <!-- Content -->
+      <div class="p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-2 truncate">{{ pizza.name }}</h2>
+        <p class="text-gray-600 mb-4 line-clamp-2">{{ pizza.description }}</p>
+
+        <!-- Regular & Medium Prices Left-Label Right-Price -->
+        <div class="flex flex-col space-y-1">
+          <div class="flex justify-between text-gray-800 font-semibold">
+            <span>Regular</span>
+            <span class="price-tag text-sm" [ngClass]="{
+            'price-amber': pizza.type === 'All',
+            'price-green': pizza.type === 'Veg',
+            'price-red': pizza.type === 'Non-Veg'
+          }">Rs {{ pizza.regularPrice }}</span>
+          </div>
+          <div class=" flex justify-between text-gray-800 font-semibold">
+            <span>Medium</span>
+            <span class="price-tag text-sm" [ngClass]="{
+            'price-amber': pizza.type === 'All',
+            'price-green': pizza.type === 'Veg',
+            'price-red': pizza.type === 'Non-Veg'
+          }">Rs {{ pizza.mediumPrice }}</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Empty State -->
+  <div *ngIf="filteredPizzas.length === 0" class="text-center py-12">
+    <i class="fas fa-pizza-slice text-4xl text-gray-300 mb-4"></i>
+    <h3 class="text-xl font-medium text-gray-500">No pizzas found</h3>
+    <p class="text-gray-400">Try selecting a different filter</p>
+  </div>
 </div>
