@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class WelcomeComponent {
 
-  countdown = 3; // seconds
+  countdown = 2; // seconds
 
   constructor(private router: Router) { }
 
