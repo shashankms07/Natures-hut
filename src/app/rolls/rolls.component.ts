@@ -11,8 +11,9 @@ export class RollsComponent implements OnInit {
   rolls: any[] = [];
   filteredRolls: any[] = [];
   selectedTab: string = 'All';
+  loadingRolls = true;
 
-  constructor(private rollsService: RollsService) {}
+  constructor(private rollsService: RollsService) { }
 
   ngOnInit(): void {
     this.loadRolls();

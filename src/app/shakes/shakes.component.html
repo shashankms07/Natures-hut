@@ -30,7 +30,8 @@
   </div>
 
   <!-- Shakes Tab Content -->
-  <div *ngIf="selectedTab === 'shakes'">
+  <!-- Shakes Tab Content -->
+  <div *ngIf="!loadingShakes && selectedTab === 'shakes'">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       <div *ngFor="let shake of shakes"
         class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 relative p-6">
@@ -60,15 +61,12 @@
         <p class="text-gray-600 line-clamp-2">{{ shake.description }}</p>
       </div>
     </div>
-    <div *ngIf="shakes.length === 0" class="text-center py-12">
-      <i class="fas fa-cocktail text-4xl text-gray-300 mb-4"></i>
-      <h3 class="text-xl font-medium text-gray-500">No shakes found</h3>
-      <p class="text-gray-400">Try selecting a different filter</p>
-    </div>
+
   </div>
 
   <!-- Ice Base Tab Content -->
-  <div *ngIf="selectedTab === 'ice-base'">
+  <div *ngIf="!loadingShakes && selectedTab === 'ice-base'">
+
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       <div *ngFor="let iceBase of iceBases"
         class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 relative p-6">
@@ -95,15 +93,12 @@
         <p class="text-gray-600 line-clamp-2">{{ iceBase.description }}</p>
       </div>
     </div>
-    <div *ngIf="iceBases.length === 0" class="text-center py-12">
-      <i class="fas fa-ice-cream text-4xl text-gray-300 mb-4"></i>
-      <h3 class="text-xl font-medium text-gray-500">No ice bases found</h3>
-      <p class="text-gray-400">Try selecting a different filter</p>
-    </div>
+
   </div>
 
   <!-- Soda Base Tab Content -->
-  <div *ngIf="selectedTab === 'soda-base'">
+  <div *ngIf="!loadingShakes && selectedTab === 'soda-base'">
+
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       <div *ngFor="let sodaBase of sodaBases"
         class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 relative p-6">
@@ -130,10 +125,12 @@
         <p class="text-gray-600 line-clamp-2">{{ sodaBase.description }}</p>
       </div>
     </div>
-    <div *ngIf="sodaBases.length === 0" class="text-center py-12">
-      <i class="fas fa-glass-whiskey text-4xl text-gray-300 mb-4"></i>
-      <h3 class="text-xl font-medium text-gray-500">No soda bases found</h3>
-      <p class="text-gray-400">Try selecting a different filter</p>
-    </div>
+
   </div>
+
+  <!-- Spinner -->
+  <div *ngIf="loadingShakes" class="flex justify-center py-12">
+    <div class="w-10 h-10 border-4 border-gray-300 border-t-amber-600 rounded-full animate-spin"></div>
+  </div>
+
 </div>

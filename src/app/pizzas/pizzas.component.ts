@@ -11,19 +11,24 @@ export class PizzasComponent implements OnInit {
   pizzas: any[] = [];
   filteredPizzas: any[] = [];
   selectedTab: string = 'All';
+  loadingPizzas = true;   // added
 
-  constructor(private pizzaService: PizzaService) {}
+  constructor(private pizzaService: PizzaService) { }
 
   ngOnInit(): void {
     this.loadPizzas();
   }
 
   loadPizzas(): void {
+    this.loadingPizzas = true;   // start loader
+
     this.pizzaService.getPizzas().subscribe(data => {
       this.pizzas = data;
       this.filterPizzas();
+      this.loadingPizzas = false;   // stop loader
     }, error => {
       console.error('Error fetching pizzas: ', error);
+      this.loadingPizzas = false;   // stop loader on error
     });
   }
 

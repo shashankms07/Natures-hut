@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { single } from 'rxjs';
 
 @Component({
   selector: 'app-desserts',
@@ -9,33 +8,32 @@ import { single } from 'rxjs';
 })
 export class DessertsComponent {
 
-  selectedTab: string = 'Ice Cream'; // Default tab
-  iceCreams: any;
-  cakes: any;
- 
-  
+  selectedTab: string = 'Ice Cream';
+  iceCreams: any[] = [];
+  cakes: any[] = [];
 
+  loadingDesserts = true;   // spinner flag
 
- 
+  constructor(private firestore: AngularFirestore) { }
+
+  ngOnInit() {
+
+    this.firestore.collection('Natures hut').doc('Desserts')
+      .collection('Cake').valueChanges()
+      .subscribe(data => {
+        this.cakes = data;
+        this.loadingDesserts = false;   // stop spinner
+      });
+
+    this.firestore.collection('Natures hut').doc('Desserts')
+      .collection('Ice Cream').valueChanges()
+      .subscribe(data => {
+        this.iceCreams = data;
+        this.loadingDesserts = false;   // stop spinner
+      });
+  }
+
   selectTab(tab: string): void {
     this.selectedTab = tab;
   }
-
- 
-
-  constructor(private firestore: AngularFirestore) {}
-
-  ngOnInit() {
-    this.firestore.collection('Natures hut').doc('Desserts').collection('Cake').valueChanges()
-      .subscribe(data => {
-        this.cakes = data;
-      });
-
-      this.firestore.collection('Natures hut').doc('Desserts').collection('Ice Cream').valueChanges()
-      .subscribe(data => {
-        this.iceCreams = data;
-      });
-
-     
-}
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PastasService } from '../pasta.service';
 
 @Component({
@@ -6,41 +6,44 @@ import { PastasService } from '../pasta.service';
   templateUrl: './pasta.component.html',
   styleUrls: ['./pasta.component.scss']
 })
-export class PastaComponent {
+export class PastaComponent implements OnInit {
 
-  Starters: any[] = [];
-  filteredStarters: any[] = [];
+  pastas: any[] = [];
+  filteredPastas: any[] = [];
   selectedTab: string = 'All';
+  loadingPastas = true;   // added
 
   constructor(private pastasService: PastasService) {}
 
   ngOnInit(): void {
-    this.StartersRolls();
+    this.loadPastas();
   }
 
-  StartersRolls(): void {
+  loadPastas(): void {
+    this.loadingPastas = true;
+
     this.pastasService.getPastas().subscribe(data => {
-      this.Starters = data;
-      this.filterStarters();
+      this.pastas = data;
+      this.filterPastas();
+      this.loadingPastas = false;   // stop loader
     }, error => {
-      console.error('Error fetching starters: ', error);
+      console.error('Error fetching pastas: ', error);
+      this.loadingPastas = false;
     });
   }
 
   selectTab(tab: string): void {
     this.selectedTab = tab;
-    this.filterStarters();
+    this.filterPastas();
   }
 
-  filterStarters(): void {
+  filterPastas(): void {
     if (this.selectedTab === 'All') {
-      this.filteredStarters = this.Starters;
+      this.filteredPastas = this.pastas;
     } else {
-      this.filteredStarters = this.Starters.filter(
-        starter => starter.type === this.selectedTab
+      this.filteredPastas = this.pastas.filter(
+        pasta => pasta.type === this.selectedTab
       );
     }
   }
-  
-
 }

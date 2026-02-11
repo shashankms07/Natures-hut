@@ -76,10 +76,16 @@
     <!-- Angular Loop Ends Here -->
   </div>
 
+  <!-- Spinner -->
+  <div *ngIf="loadingStarters" class="flex justify-center py-12">
+    <div class="w-10 h-10 border-4 border-gray-300 border-t-amber-600 rounded-full animate-spin"></div>
+  </div>
+
   <!-- Empty State -->
-  <div *ngIf="filteredStarters.length === 0" class="text-center py-12">
+  <div *ngIf="!loadingStarters && filteredStarters.length === 0" class="text-center py-12">
     <i class="fas fa-utensils text-4xl text-gray-300 mb-4"></i>
     <h3 class="text-xl font-medium text-gray-500">No starters found</h3>
     <p class="text-gray-400">Try selecting a different filter</p>
   </div>
+
 </div>

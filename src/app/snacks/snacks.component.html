@@ -1,40 +1,60 @@
-<div class="p-4">
+<div class="p-4 max-w-md mx-auto">
 
-    <div class="mb-4 mt-4 flex space-x-0">
-      <button (click)="selectTab('Veg')" [ngClass]="{
-          'text-white bg-green-500': selectedTab === 'Veg',
-          'text-blue-500 bg-white': selectedTab !== 'Veg'
-        }" class="py-2 px-4 font-semibold flex-1 border border-gray-300">
-        Veg
-      </button>
-      <button (click)="selectTab('Egg')" [ngClass]="{
-          'text-white bg-red-500': selectedTab === 'Egg',
-          'text-blue-500 bg-white': selectedTab !== 'Egg'
-        }" class="py-2 px-4 font-semibold flex-1 border border-gray-300">
-        Egg
-      </button>
+  <!-- Tabs -->
+  <div class="mb-6 flex rounded-lg overflow-hidden shadow-sm">
+    <button
+      (click)="selectTab('Veg')"
+      [ngClass]="{
+        'bg-green-500 text-white': selectedTab === 'Veg',
+        'bg-white text-green-500 hover:bg-green-100': selectedTab !== 'Veg'
+      }"
+      class="flex-1 py-3 font-semibold transition-colors duration-200 text-center"
+    >
+      Veg
+    </button>
+
+    <button
+      (click)="selectTab('Egg')"
+      [ngClass]="{
+        'bg-red-500 text-white': selectedTab === 'Egg',
+        'bg-white text-red-500 hover:bg-red-100': selectedTab !== 'Egg'
+      }"
+      class="flex-1 py-3 font-semibold transition-colors duration-200 text-center"
+    >
+      Egg
+    </button>
+  </div>
+
+  <!-- Card Container -->
+  <div class="p-6 bg-white rounded-xl shadow-lg">
+    <h2 class="text-2xl font-bold mb-4 text-gray-800">Snacks</h2>
+    <div class="border-b border-gray-200 mb-4"></div>
+
+    <!-- Veg Snacks -->
+    <div *ngIf="selectedTab === 'Veg'">
+      <ul class="space-y-3">
+        <li
+          *ngFor="let snack of snacks"
+          class="flex justify-between items-center p-4 rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-200"
+        >
+          <span class="text-lg font-medium text-gray-700">{{ snack.name }}</span>
+          <span class="text-lg font-semibold text-gray-900">Rs {{ snack.price }}</span>
+        </li>
+      </ul>
     </div>
-  
-    <div class="p-4 bg-white shadow-md rounded-lg mb-4">
-      <h1 class="text-xl font-bold -mt-2 mb-4">Snacks</h1>
-      <div class="border-b -mt-2 mb-1 border-gray-300"></div>
-      <div *ngIf="selectedTab === 'Veg'">
-        <ul>
-          <li *ngFor="let snack of snacks" class="flex justify-between items-center py-2 border-b">
-            <span class="text-lg">{{ snack.name }}</span>
-            <span class="text-lg font-semibold">Rs {{ snack.price }}</span>
-          </li>
-        </ul>
-      </div>
-  
-      <div *ngIf="selectedTab === 'Egg'">
-        <ul>
-          <li *ngFor="let eggSnack of eggSnacks" class="flex justify-between items-center py-2 border-b">
-            <span class="text-lg">{{ eggSnack.name }}</span>
-            <span class="text-lg font-semibold">Rs {{ eggSnack.price }}</span>
-          </li>
-        </ul>
-      </div>
+
+    <!-- Egg Snacks -->
+    <div *ngIf="selectedTab === 'Egg'">
+      <ul class="space-y-3">
+        <li
+          *ngFor="let eggSnack of eggSnacks"
+          class="flex justify-between items-center p-4 rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-200"
+        >
+          <span class="text-lg font-medium text-gray-700">{{ eggSnack.name }}</span>
+          <span class="text-lg font-semibold text-gray-900">Rs {{ eggSnack.price }}</span>
+        </li>
+      </ul>
     </div>
   </div>
-  
+
+</div>

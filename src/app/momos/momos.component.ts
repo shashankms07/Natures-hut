@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MomosService } from '../momos.service';
 
 @Component({
@@ -6,40 +6,44 @@ import { MomosService } from '../momos.service';
   templateUrl: './momos.component.html',
   styleUrls: ['./momos.component.scss']
 })
-export class MomosComponent {
+export class MomosComponent implements OnInit {
 
-  Starters: any[] = [];
-  filteredStarters: any[] = [];
+  momos: any[] = [];
+  filteredMomos: any[] = [];
   selectedTab: string = 'All';
+  loadingMomos = true;   // spinner variable
 
-  constructor(private momosService: MomosService) {}
+  constructor(private momosService: MomosService) { }
 
   ngOnInit(): void {
-    this.StartersRolls();
+    this.loadMomos();
   }
 
-  StartersRolls(): void {
+  loadMomos(): void {
+    this.loadingMomos = true;
+
     this.momosService.getMomos().subscribe(data => {
-      this.Starters = data;
-      this.filterStarters();
+      this.momos = data;
+      this.filterMomos();
+      this.loadingMomos = false;   // stop loader
     }, error => {
-      console.error('Error fetching starters: ', error);
+      console.error('Error fetching momos: ', error);
+      this.loadingMomos = false;
     });
   }
 
   selectTab(tab: string): void {
     this.selectedTab = tab;
-    this.filterStarters();
+    this.filterMomos();
   }
 
-  filterStarters(): void {
+  filterMomos(): void {
     if (this.selectedTab === 'All') {
-      this.filteredStarters = this.Starters;
+      this.filteredMomos = this.momos;
     } else {
-      this.filteredStarters = this.Starters.filter(
-        starter => starter.type === this.selectedTab
+      this.filteredMomos = this.momos.filter(
+        momo => momo.type === this.selectedTab
       );
     }
   }
-
 }

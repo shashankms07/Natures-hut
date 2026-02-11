@@ -11,19 +11,24 @@ export class FoodComponent implements OnInit {
   Starters: any[] = [];
   filteredStarters: any[] = [];
   selectedTab: string = 'All';
+  loadingStarters = true;
 
-  constructor(private startersService: StartersService) {}
+  constructor(private startersService: StartersService) { }
 
   ngOnInit(): void {
     this.StartersRolls();
   }
 
   StartersRolls(): void {
+    this.loadingStarters = true;
+
     this.startersService.getStarters().subscribe(data => {
       this.Starters = data;
       this.filterStarters();
+      this.loadingStarters = false;   // IMPORTANT
     }, error => {
       console.error('Error fetching starters: ', error);
+      this.loadingStarters = false;   // also stop loader on error
     });
   }
 

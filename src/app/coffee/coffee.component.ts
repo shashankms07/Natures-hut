@@ -9,20 +9,23 @@ import { CoffeeService } from '../coffee.service';
 export class CoffeeComponent {
 
   coffees: any[] = [];
+  loadingCoffee: boolean = true;   // spinner variable
 
-  constructor(private coffeeService: CoffeeService) {}
+  constructor(private coffeeService: CoffeeService) { }
 
   ngOnInit(): void {
     this.StartersRolls();
   }
 
   StartersRolls(): void {
+    this.loadingCoffee = true;
+
     this.coffeeService.getCoffee().subscribe(data => {
       this.coffees = data;
+      this.loadingCoffee = false;  // stop spinner
     }, error => {
-      console.error('Error fetching pizzas: ', error);
+      console.error('Error fetching coffees: ', error);
+      this.loadingCoffee = false;
     });
   }
- 
-
 }
